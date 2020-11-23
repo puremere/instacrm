@@ -1,0 +1,87 @@
+﻿@model instaPayPortal.ViewModelPost.ListOfProductOrder
+
+
+<div class="row">
+    <div style="overflow-x:auto;padding:10px">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="    background-image: -webkit-linear-gradient(top,#2a85ae 0,#246388 100%) !important;
+    background-image: -o-linear-gradient(top,#2a85ae 0,#246388 100%) !important;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#2a85ae),to(#246388)) !important;
+    background-image: linear-gradient(to bottom,#2a85ae 0,#246388 100%) !important;color: #fff">
+                <form method="post" id="getPDF" action="/manager/createUserReport">
+                    <input name="data" hidden/>
+                    <h3 class="panel-title"><i class="fa fa-shopping-basket fa-fw"></i> شرح سفارش    <i id="print" style="cursor:pointer; float:left" class="fa fa-print"></i></h3>
+
+                </form>
+               
+                <script>
+                    $("#print").click(function () {
+
+                        var obj = @Html.Raw(@Json.Encode(Model.myProducts));
+                        $("input[name=data]").val(JSON.stringify(obj));
+                        $("input[name=id]").val('@Model.myProducts.First().id');
+                        $("#getPDF").submit();
+                        $.ajax({
+                            url: '/manager/createUserReport',
+                            dataType: 'html',
+                            type : 'POST',
+                            data: {
+
+                                data: JSON.stringify(obj)
+                            },
+
+                            success: function (data) {
+
+                               
+                            }
+
+
+
+                        });
+
+                    });
+                </script>
+            </div>
+            <div class="panel-body">
+                <div id="morris-area-chart">
+                    <div style="overflow:auto">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>ردیف</th>
+                                    <th>نام کالا</th>
+                                    <th>قیمت </th>
+                                    <th>تعداد</th>
+                                    @*<th></th>*@
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.myProducts)
+                                {
+                                    string image = "/images/panelimages/" + item.image;
+                                    int i = Model.myProducts.IndexOf(item) + 1;
+
+                                    <tr style=" ">
+                                        <td>@i</td>
+                                        <td>@item.title</td>
+                                        <td>@item.price</td>
+                                        <td>@item.nums</td>
+                                        @*<td><img src=@image style="max-width:100px" /> </td>*@
+
+                                    </tr>
+                                }
+
+
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

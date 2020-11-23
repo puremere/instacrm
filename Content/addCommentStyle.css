@@ -1,0 +1,99 @@
+﻿.addcommentmain {
+        margin: 15px;
+        background-color: white;
+        padding: 50px;
+    }
+
+    .content {
+        padding: 0px;
+        margin: 0px;
+        direction: rtl;
+    }
+
+    .img {
+        width: 100%;
+    }
+
+    .commentForm {
+        width: 100%;
+        padding: 50px 150px;
+    }
+
+    .FormRow {
+        width: 100%;
+        margin: 20px;
+    }
+
+    .field {
+        border: 1px solid #b5afaf;
+        border-radius: 7px;
+        width: 100%;
+        padding: 15px;
+    }
+
+    .commentTitle {
+    }
+
+    .commentDesc {
+    }
+
+    .titleheader {
+        width: 100%;
+        text-align: right;
+        font-size: 15px;
+        padding: 10px;
+        direction: rtl;
+        font-weight: bold;
+    }
+
+    .buttHolder {
+        width: 100%;
+        cursor:pointer;
+    }
+    #verify {
+        font-size: 1.143rem;
+        line-height: 1.375;
+        border-radius: 8px;
+        background-color: #00bfd6;
+        border: 1px solid #41a7b4;
+        padding: 14px 31px;
+        color: #fff;
+        text-align:center
+    }
+    #imageholder{
+         padding:0 50px;
+
+    }
+     #formholder{
+         padding:0 50px;
+
+    }
+
+@media only screen and (max-width: 960px) 
+{
+    .addcommentmain{
+        padding : 0px !important;
+        margin : 5px !important;
+    }
+    .FormRow{
+        margin:0px  !important;
+    }
+     #imageholder{
+         padding:35px !important;
+
+    }
+      #formholder{
+         padding:0 15px !important;
+
+    }
+      .mustbeshow{
+          display:block!important;
+      }
+      .mustbehide{
+          display:none!important;
+
+      }
+      .buttHolder{
+          margin:20px 0 !important;
+      }
+}

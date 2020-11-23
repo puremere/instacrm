@@ -1,0 +1,851 @@
+﻿@import url('siteColor.css');
+#filterAndSortButt {
+    box-shadow: 2px 2px 5px -1px rgba(148,149,153,1);
+}
+
+.resp-tabs-list li.selected {
+    color: #fff;
+    background-color: #64c4ef;
+    border-radius: 10px;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 24px;
+}
+
+    /* Hide default HTML checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 9px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+#lableToggle {
+    float: left;
+}
+#availableTiggle {
+    
+   float:right;
+    font-weight: 500;
+    margin-top: 2px;
+}
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+accordion-blocks .card {
+    margin-bottom: 1.2rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.accordion-blocks .card .card-body {
+    border-top: 1px solid #eee;
+}
+
+.accordion {
+    background-color: #fff;
+    color: #444;
+    cursor: pointer;
+    padding: 10px 20px 5px 20px;
+    width: 100%;
+    border: none;
+    text-align: right;
+    outline: none;
+    font-size: 13px;
+    transition: 0.4s;
+    font-weight: bold;
+}
+
+
+
+.active {
+    /*background-color: #ccc;*/
+    border-bottom: 2px solid #eee;
+    margin-bottom: 20px;
+}
+
+.accordion:after {
+    content: '\002B';
+    color: #777;
+    font-weight: bold;
+    float: left;
+    margin-left: 5px;
+}
+
+.accholder .active:after {
+    content: "\2212";
+    margin-bottom: 15px;
+}
+
+.panell {
+    margin: 5px;
+    background-color: white;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.accholder {
+    border: 1px solid #eee;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
+.CHcontainer {
+    display: block;
+    position: relative;
+    padding-right: 10px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 12px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    direction: rtl;
+    font-weight: inherit;
+}
+
+    /* Hide the browser's default checkbox */
+    .CHcontainer input {
+        position: absolute;
+        /*opacity: 0;*/
+        cursor: pointer;
+        height: 0;
+        width: 0;
+        left: 0;
+    }
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 23px;
+    width: 23px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+
+/* On mouse-over, add a grey background color */
+.CHcontainer:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.CHcontainer input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.CHcontainer input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.CHcontainer .checkmark:after {
+    left: 7px;
+    top: 1px;
+    width: 7px;
+    height: 14px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.c-profile-empty::before {
+    font-size: 154px;
+    margin-bottom: 30px;
+    display: block;
+    color: #dadada;
+}
+
+.c-profile-empty::before {
+    font-family: "Font Awesome 5 pro";
+    font-weight: 900;
+    content: "\f071";
+}
+
+
+
+
+
+
+
+
+.selector {
+    position: relative;
+    padding: 20px;
+    width: 100%;
+    color: #7e7e7e;
+    padding-top: 0px
+}
+
+    .selector ul {
+        position: relative;
+        display: block;
+        overflow: auto;
+        min-width: 138px;
+        max-height: 200px;
+        background: #fff;
+        list-style: none;
+        white-space: inherit;
+        padding-right: 17px;
+        width: calc(100% + 17px)
+    }
+
+    .selector li {
+        position: relative;
+        padding: 3px 20px 3px 25px;
+        cursor: pointer
+    }
+
+        .selector li:before {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            top: 4px;
+            display: inline-block;
+            margin-right: 9px;
+            width: 17px;
+            height: 17px;
+            background-color: #f4f4f4;
+            border: 1px solid #d5d5d5;
+            content: ""
+        }
+
+        .selector li[data-selected="1"]:before {
+            border: 1px solid #d7d7d7;
+            background-color: #fff
+        }
+
+        .selector li[data-selected="1"]:after {
+            position: absolute;
+            top: 50%;
+            left: 3px;
+            top: 11px;
+            display: inline-block;
+            width: 4px;
+            height: 10px;
+            border-right: 2px solid;
+            border-bottom: 2px solid;
+            background: none;
+            color: #39c9a9;
+            content: "";
+            -webkit-transform: rotate(40deg) translateY(-50%);
+            transform: rotate(40deg) translateY(-50%)
+        }
+
+        .selector li:hover {
+            color: #aaa
+        }
+
+        .selector li .total {
+            position: absolute;
+            right: 0;
+            color: #d7d7d7
+        }
+
+    .selector .price-slider {
+        text-align: center;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        position: relative;
+        padding-top: 17px
+    }
+
+@media (min-width: 768px) {
+    .selector .price-slider {
+        padding-top: 8px
+    }
+}
+
+.selector .price-slider:before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: 0;
+    color: #39c9a9;
+    content: attr(data-currency);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%)
+}
+
+.selector .slider-range {
+    width: 90%;
+    margin-bottom: 30px;
+    border: none;
+    background: #e2f7f2;
+    height: 3px;
+    margin-left: 8px;
+    margin-right: 8px
+}
+
+@media (min-width: 768px) {
+    .selector .slider-range {
+        width: 100%
+    }
+}
+
+.selector .ui-slider-handle {
+    border-radius: 50%;
+    background-color: #64c4ef;
+    border: none;
+    top: -14px;
+    width: 28px;
+    height: 28px;
+    outline: none
+}
+
+@media (min-width: 768px) {
+    .selector .ui-slider-handle {
+        top: -7px;
+        width: 16px;
+        height: 16px
+    }
+}
+
+.selector .ui-slider-range {
+    background-color: #d7d7d7
+}
+
+.selector .slider-price {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    line-height: 28px;
+    text-align: center;
+    color:#4d4d4d
+}
+
+    .selector .slider-price:before {
+        position: absolute;
+        top: 50%;
+        left: 13px;
+        margin-top: 0;
+        color: #39c9a9;
+        content: attr(data-currency);
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%)
+    }
+
+.selector .show-all {
+    position: relative;
+    padding-left: 25px;
+    color: #39c9a9;
+    cursor: pointer;
+    line-height: 28px
+}
+
+    .selector .show-all:after, .selector .show-all:before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 4px;
+        margin-top: -1px;
+        color: #39c9a9;
+        width: 10px;
+        border-bottom: 1px solid
+    }
+
+    .selector .show-all:after {
+        -webkit-transform: rotate(90deg);
+        transform: rotate(90deg)
+    }
+
+.selector.open ul {
+    max-height: none
+}
+
+.selector.open .show-all:after {
+    display: none
+}
+
+
+* {
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#productlistimageholder {
+    width: 100%;
+}
+
+/*radio botton*/
+
+/* The container */
+.radoioholder {
+    display: block;
+    position: relative;
+    padding-right: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight:400;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    direction: rtl;
+}
+
+    /* Hide the browser's default radio button */
+    .radoioholder input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+/* Create a custom radio button */
+.radiocheckmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.radoioholder:hover input ~ .radiocheckmark {
+    background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.radoioholder input:checked ~ .radiocheckmark {
+    background-color: green;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.radiocheckmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.radoioholder input:checked ~ .radiocheckmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.radoioholder .radiocheckmark:after {
+    top: 5px;
+    left: 5px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: white;
+}
+#sortybuttHolder {
+    width: 100%;
+    text-align: center;
+    margin-top: 25px;
+}
+#sortybutt{
+   
+    font-size:10px
+}
+.returnbutt {
+    align-content: center;
+    direction: rtl;
+    height: auto;
+    background-color: Var(--toolbar);
+    color: var(--toolbarText);
+    height: 10%;
+    display: flex;
+    align-items: center;
+    padding-right: 25px;
+}
+    .returnbutt div i {
+        color: var(--toolbarText);
+    }
+    @media only screen and (max-width: 960px) {
+        #sortholder {
+        display: none;
+        position: absolute;
+        top: 0px;
+        background-color: rgba(0, 0, 0, 0.1);
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        align-items:center
+    }
+        #sortholder #horizontalTab {
+            padding: 15px !important;
+            display: block !important;
+            background-color: white !important;
+            width: 75% !important;
+            margin: auto !important;
+        }
+    .filtersortmenu {
+        padding: 10px;
+        border-left: 1px solid #ddd;
+        text-align: center;
+    }
+
+    #filterAndSortButt {
+        width: 100%;
+        direction: rtl;
+      
+        background-color: white;
+        height: 100%
+    }
+
+    .devidfromheader {
+        margin-top: 0px !important;
+    }
+
+    .minwidth {
+        display: inline-block !important;
+        width: 100%
+    }
+
+    .maxwidth {
+        display: none
+    }
+
+    #filterAndSortButt {
+        display: block !important;
+    }
+
+    #sortholdermax {
+        display: none !important;
+    }
+
+    #SIBdiv {
+        width: 100% !important;
+        padding: 0 !important;
+    }
+
+    .showmedetail {
+        width: 100%;
+        margin-bottom: 5px;
+       
+    }
+
+    .sibdivparent {
+        margin-top: 0px !important;
+    }
+
+    .showmedetailparent {
+        margin-top: 2px !important;
+       
+    }
+
+    .badgeholder {
+        min-height: 0px;
+    }
+
+    #productlistimageholder {
+        width: 80%;
+        margin: auto;
+    }
+
+    .toman {
+        font-size: 11px;
+    }
+
+    .pricetoman {
+        font-size: 16px;
+    }
+
+    .specialBadgHoldr {
+        float: right;
+    }
+
+    .discountholder {
+        display: inline-block;
+    }
+
+    .colorholder {
+        direction: rtl;
+        float: right;
+    }
+
+    #maintitleholder {
+        font-size: 12px !important;
+        font-weight: 500;
+        min-height:95px;
+    }
+
+        #maintitleholder .descholder {
+            font-size: 9px !important;
+            font-weight: 300;
+            direction: rtl;
+            margin-top: 5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 50%;
+            margin: auto;
+        }
+
+            #maintitleholder .descholder .titledesc {
+                font-size: 9px !important;
+                font-weight: 300;
+                direction: rtl;
+                margin-top: 5px;
+            }
+
+    #contentholderofAll {
+        padding-bottom: 5px !important;
+        box-shadow: 2px 2px 5px -1px rgba(148,149,153,1);
+    }
+
+    .pro-image-front {
+        max-width: 150px !important;
+        max-height: 150px !important;
+        min-height: 150px !important;
+    }
+
+    #badgeholder {
+        min-height: 0px !important;
+    }
+
+    #butholder {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0px;
+        border: 0;
+        height: 10%;
+    }
+
+    #okbutt {
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+        border: 0;
+        background-color: #008aea;
+        color: white;
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .rangedetailitem {
+        display: inline-block;
+        margin-left: 5px;
+        font-size: 10px;
+        font-weight: 300;
+        font-weight: 300;
+    }
+
+    .filtername {
+        width: 40%;
+        float: right;
+        margin: 0;
+        height: 80%;
+        background-color: #000;
+    }
+
+    .filteritem {
+        width: 100%;
+        padding: 14px 10px;
+        color: #fff;
+        text-align: right;
+        font-size: 11px;
+    }
+
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 17px !important;
+        width: 17px !important;
+        background-color: #eee;
+        margin-top: -2px;
+        margin-left: 10px
+    }
+
+    .filteritem span {
+        border: 1px solid #fff;
+        border-radius: 0.8em;
+        -moz-border-radius: 0.8em;
+        color: black;
+        background-color: white;
+        font-weight: bold;
+        line-height: 1.7em;
+        margin-right: 5px;
+        text-align: center;
+        width: 1.7em;
+        float: left;
+        display: none;
+    }
+
+        .filteritem span .fal {
+            color: black !important;
+            font-size: 11px;
+            font-weight: 700;
+            vertical-align: middle;
+        }
+
+    .filteractive {
+        background: #fff;
+        color: black;
+    }
+
+        .filteractive span {
+            background: #000;
+            color: white;
+            border: 1px solid #000;
+        }
+
+            .filteractive span .fal {
+                color: white !important;
+            }
+
+
+    .filterdetail {
+        width: 60%;
+        float: left;
+        margin: 0;
+        height: 80%;
+    }
+
+    .checkmark {
+        background-color: #fff;
+        border: 2px solid green;
+        border-radius: 1px;
+    }
+
+    .containner {
+        font-size: 11px !important;
+    }
+
+        .containner .checkmark:after {
+            left: 5px !important;
+            top: 1px !important;
+        }
+
+    .detail {
+        width: 100%;
+        overflow: scroll;
+        max-height: 90%;
+    }
+
+    .detailitem {
+        padding: 14px 3px;
+        text-align: right;
+    }
+
+
+    #FLTholder {
+        display: none;
+        background-color: #fff !important;
+        position: fixed !important;
+        top: 0;
+        right: 0;
+        width: 100% !important;
+        height: 100%;
+        padding: 0px !important;
+    }
+
+    #FLTholderForApp {
+        background-color: #fff !important;
+        position: fixed !important;
+        top: 0;
+        right: 0;
+        width: 100% !important;
+        height: 100%;
+        padding: 0px !important;
+    }
+
+    #butholder {
+        display: block !important;
+    }
+
+    #exitholder {
+        display: block !important;
+    }
+        .product-men{
+            margin:3px 0
+        }
+        .priceSection{
+            min-height:57px;
+        }
+}
+@media (max-width: 768px) {
+    .priceSection {
+        min-height: 20px;
+    }
+    .selector .ui-slider-handle {
+        top: -7px;
+        width: 16px;
+        height: 16px
+    }
+    #maintitleholder {
+        font-size: 12px !important;
+        font-weight: 500;
+        min-height: 55px;
+    }
+}

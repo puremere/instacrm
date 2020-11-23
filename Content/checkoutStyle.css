@@ -1,0 +1,86 @@
+﻿
+
+
+@media only screen and (max-width: 960px){
+
+
+
+     #finalpricediv{
+        width:100% !important;
+        padding:5px !important;
+    }
+     #detailpricediv{
+         display:none!important;
+        width:100% !important;
+        padding:5px !important;
+    }
+     #finalpricediv .row{
+          padding:5px 2px !important;
+     }
+     #finalpricediv .rowabove{
+          padding:15px 5px !important;
+     }
+     #row1_td1{
+         /*display:none!important;*/
+        
+     }
+     #row1_td2{
+         width:30% !important;
+          padding : 20px 0px !important;
+     }
+      #row1_td3 {
+          width:70% !important;
+     }
+     #row1_td4{
+         display:none!important;
+     }
+     #row1_td5{
+         display:none!important;
+     }
+     #tableholder{
+         border:none!important;
+     }
+     .mustbeshow{
+         display: block!important; 
+     }
+     #tr2{
+         display:block!important; 
+         width:100% !important;
+     }
+     #row2_td4{
+           width:50% !important;
+     }
+     #row2_td5{
+           width:50% !important;
+           
+     }
+     .value{
+         line-height:5px !important;
+         width: 23px!important;
+            height: 23px!important;
+            margin:0 10px !important;
+     }
+     .value-minus{
+         width:23px !important;
+         height: 23px !important;
+     }
+     .value-plus{
+         width:23px !important;
+         height: 23px !important;
+     }
+     .mybtn{
+         position:fixed !important;
+         bottom:0px !important;
+         left:0px !important;
+         z-index:9999;
+         margin-bottom:0px !important;
+     }
+     #headofshopcart{
+         margin:15px !important;
+     }
+     #headofshopcartP{
+         font-size:16px!important;
+         font-weight:600!important;
+     }
+
+}

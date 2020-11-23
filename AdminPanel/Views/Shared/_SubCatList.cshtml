@@ -1,0 +1,37 @@
+﻿@model AdminPanel.ViewModel.CatPageViewModel
+
+    <label class="control-label component for="first-name">
+        منو 2 :
+    </label>
+    <div class="component">
+    @Html.DropDownListFor(m => m.SelectedCat, Model.Cats, "--", new { id = "subcatslist", style = "width:100%", onchange = "setglobalsubcatid(subcatslist)" })
+</div>
+    <script>
+
+        function setglobalsubcatid(subcatslist) {
+            var selectedValue = subcatslist.value;
+
+            $.ajax({
+                url: '/Home/setglobalsubcatid',
+                dataType: 'html',
+                data: {
+                    subcatid: selectedValue
+                },
+                success: function (data) {
+
+                    
+
+                },
+                error: function () {
+                   
+                }
+            });
+        }
+
+
+    </script>
+
+
+    
+
+

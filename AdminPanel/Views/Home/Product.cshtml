@@ -1,0 +1,326 @@
+﻿@model AdminPanel.ViewModel.CatPageViewModel
+@{
+    ViewBag.Title = "مدیریت مطالب";
+}
+
+
+
+
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>مشاهده محصول</h2>
+                <ul class="nav navbar-left panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#">Settings 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Settings 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                <div id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+
+
+
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            دسته بندی اصلی :
+                        </label>
+                        <div class="col-md-2 col-sm-2 col-xs-6">
+                            @Html.DropDownListFor(m => m.SelectedCat, Model.Cats, "--", new { id = "catslist6", name = "catslist6", onchange = "Getsubcatid(this)", style = "width:100%" })
+                        </div>
+
+                        <script>
+
+                            function Getsubcatid(catslist6) {
+
+
+                                var selectedValue = catslist6.value;
+
+
+                                $.ajax({
+                                    url: '/Home/getsubcatlistforedit',
+                                    dataType: 'html',
+                                    data: {
+                                        catid: selectedValue
+                                    },
+                                    success: function (data) {
+
+                                        $('#subcatholder2').html(data);
+
+                                    },
+                                    error: function () {
+                                        alert("nashod")
+                                    }
+                                });
+                            }
+
+
+                        </script>
+
+                        <div id="subcatholder2" >
+
+                        </div>
+
+                        <div id="Verify" class="btn btn-success" onclick="Verifyclicked(Verify)">تایید</div>
+                        <script>
+                            function Verifyclicked(Verify) {
+
+                                $.ajax({
+                                    url: '/Home/GetTheListOfItems',
+                                    dataType: 'html',
+                                    success: function (data) {
+
+                                        $('#listholder').html(data);
+
+                                    },
+                                    error: function () {
+                                        alert("nashod")
+                                    }
+                                });
+                            }
+                        </script>
+
+                    </div>
+
+
+                    <div class="form-group" id="listholder" style="padding:4% ; margin-right:35px">
+
+                    </div>
+
+
+
+                    <div class="ln_solid"></div>
+
+
+
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+@if (ViewBag.page != null)
+{
+    <script>
+    var item = @ViewBag.page
+    $.ajax({
+        url: '/Home/GetTheListOfItems',
+        dataType: 'html',
+        data: {
+            page: item
+        },
+        success: function (data) {
+
+            $('#listholder').html(data);
+
+        },
+        error: function () {
+            alert("nashod")
+        }
+    });
+    </script>
+}
+
+<div class="row">
+    
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>تعریف محصول</h2>
+                <ul class="nav navbar-left panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#">Settings 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Settings 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                <div id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+
+
+
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            دسته بندی اصلی :
+                        </label>
+                        <div class="col-md-2 col-sm-2 col-xs-6">
+                            @Html.DropDownListFor(m => m.SelectedCat, Model.Cats, "--", new { id = "catslist3", name = "catslist3", onchange = "GetSelectedTextValue(this)", style = "width:100%" })
+                        </div>
+
+                        <script>
+
+                            function GetSelectedTextValue(catslist3) {
+
+
+                                var selectedValue = catslist3.value;
+
+                                $.ajax({
+                                    url: '/Home/getsubcatlist',
+                                    dataType: 'html',
+                                    data: {
+                                        catid: selectedValue
+                                    },
+                                    success: function (data) {
+
+                                        $('#subcatholder').html(data);
+
+                                    },
+                                    error: function () {
+                                        alert("nashod")
+                                    }
+                                });
+                            }
+
+
+                        </script>
+
+                        <div id="subcatholder">
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    @using (Html.BeginForm("Product", "Home", FormMethod.Post,
+    new { enctype = "multipart/form-data", id = "signupform" }))
+                    {
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                نام :
+                            </label>
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <input type="text" id="productname" name="productname" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+
+
+
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                توضیحات :
+                            </label>
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <textarea id="productdesc" required="required" class="form-control" name="productdesc" style="height:170px"></textarea>
+                            </div>
+
+
+
+
+
+                        </div>
+                        <div class="form-group">
+
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12 ">آپلود عکس:</label>
+                            <input class="col-md-4 col-sm-4 col-xs-12 " style="display: inline-block; float: right" id="fileupload" type="file" name="file" multiple="multiple" accept="image/*">
+                            <div class="col-md-4 col-sm-4 col-xs-12 " style="direction:rtl">
+                                @*<button class="btn btn-primary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="reset">Reset</button>*@
+                                @* <button id="CRprocuct" class="btn btn-success" onclick="CRproductclicked(CRprocuct)">تایید</button>*@
+                                <div id="CRprocuct" class="btn btn-success" onclick="CRproductclicked(CRprocuct)">تایید</div>
+
+                                <script>
+                                function CRproductclicked(CRprocuct) {
+
+                                    var name = productname.value;
+                                    var desc = productdesc.value;
+                                    var file = fileupload.value;
+
+
+
+                                    if (name != "" &  file != "" & desc != "") {
+                                        $("#signupform").submit();
+                                    }
+
+                                    else {
+                                        toastr.options = {
+                                            "debug": false,
+                                            "positionClass": "toast-top-center",
+                                            "onclick": null,
+                                            "fadeIn": 300,
+                                            "fadeOut": 1000,
+                                            "timeOut": 5000,
+                                            "extendedTimeOut": 1000
+                                        }
+                                        toastr.error('تمامی موارد را کامل کنید')
+                                    }
+
+
+                                }
+                                </script>
+                            </div>
+                        </div>
+                    }
+
+
+                    <div class="ln_solid"></div>
+
+
+
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

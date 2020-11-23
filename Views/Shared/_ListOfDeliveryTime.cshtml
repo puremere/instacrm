@@ -1,0 +1,142 @@
+﻿@model instaPayPortal.ViewModel.ListOfDeliveryTimeViewModel
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "لیست محصولات";
+}
+
+
+
+
+@*@using (Html.BeginForm("Index", "Student", FormMethod.Get))
+    {
+        <p>
+            Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </p>
+    }*@
+
+<div class="row">
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="    background-image: -webkit-linear-gradient(top,#2a85ae 0,#246388 100%) !important;
+    background-image: -o-linear-gradient(top,#2a85ae 0,#246388 100%) !important;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#2a85ae),to(#246388)) !important;
+    background-image: linear-gradient(to bottom,#2a85ae 0,#246388 100%) !important;color: #fff">
+                <h3 class="panel-title"><i class="fa fa-shopping-basket fa-fw"></i> لیست زمان های ارسال </h3>
+            </div>
+            <div class="panel-body">
+                <div id="morris-area-chart">
+                    <div style="overflow:auto; padding:10px">
+                        <table class="table table-bordered table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        ID
+                                        @*@Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })*@
+                                    </th>
+                                    <th>
+                                        روز
+                                    </th>
+                                    <th>
+                                        @*@Html.ActionLink("Enrollment Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })*@
+                                        از ساعت
+                                    </th>
+                                    <th>
+                                        تا ساعت
+                                    </th>
+                                    <th>
+
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    if (Model.ListOfDeliveryTime != null)
+                                    {
+                                        foreach (var item in Model.ListOfDeliveryTime)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.ID)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.DayText)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TimeFrom)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TimeTo)
+                                                </td>
+
+                                                <td>
+                                                    @{
+                                                        var classname = "deleteproduct" + item.ID;
+                                                        <a id=@item.ID class=@classname style="  margin:2px ; cursor: pointer; background-color: #246388; padding: 5px; color: #fff; border-radius: 5px;">حذف</a> @*@Html.ActionLink("حذف", "Delete", new { id = item.ID })*@
+                                                        <script>
+                                var classname = "deleteproduct" + @item.ID
+                                $("." + classname).click(function () {
+                                    $.ajax({
+                                        url: '/manager/DeleteDeliveryTime',
+                                        dataType: 'html',
+                                        data: {
+                                            id: this.id,
+                                        },
+                                        success: function (data) {
+                                            if (data === "success") {
+                                                toastr.options = {
+                                                    "debug": false,
+                                                    "positionClass": "toast-top-center",
+                                                    "onclick": null,
+                                                    "fadeIn": 300,
+                                                    "fadeOut": 1000,
+                                                    "timeOut": 5000,
+                                                    "extendedTimeOut": 1000
+                                                }
+                                                toastr.success('زمان مورد نظر حذف شد')
+                                                location.reload();
+                                            }
+                                            else {
+                                                toastr.options = {
+                                                    "debug": false,
+                                                    "positionClass": "toast-top-center",
+                                                    "onclick": null,
+                                                    "fadeIn": 300,
+                                                    "fadeOut": 1000,
+                                                    "timeOut": 5000,
+                                                    "extendedTimeOut": 1000
+                                                }
+                                                toastr.success('امکان حذف وجود ندارد')
+                                            }
+                                            
+                                        },
+                                        error: function () {
+                                            alert("nashod")
+                                        }
+                                    });
+                                })
+                                                        </script>
+                                                    }
+
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    }
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(".pagination-container").css("direction", "ltr")
+</script>

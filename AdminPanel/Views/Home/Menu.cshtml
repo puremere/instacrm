@@ -1,0 +1,566 @@
+﻿@model AdminPanel.ViewModel.CatPageViewModel
+@{
+    ViewBag.Title = "مدیریت مطالب";
+}
+<style>
+    .component {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .holderofformgroup {
+        margin-right: 5%;
+    }
+</style>
+
+<div class="row" >
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>مدیریت دسته بندی ها</h2>
+                <ul class="nav navbar-left panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#">Settings 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Settings 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                <div id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+                       <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" style="text-align:right">
+                            :تعریف 
+                        </label>
+                    </div>
+
+                    <div class="holderofformgroup">
+                        <div class="form-group">
+                            <label style="font:bold; margin-left:20px" class="control-label component" for="first-name">
+                                لایه اول -
+                            </label>
+                            <label class="control-label component" for="first-name">
+                                منو 1 : 
+                            </label>
+                            <div class="component">
+                                <input type="text" id="DEDcatid" required="required" class="form-control">
+                            </div>
+
+
+                            <div class="component " style="direction:rtl">
+                               
+                               @* <button id="DEFcatok" class="btn btn-success" onclick="DEFcatokclicked(DEFcatok)">تایید</button>*@
+                                <button id="DEFcatok" class="btn btn-success" >تایید</button>
+                                <script>
+                                    $("#DEFcatok").click(function () {
+                                        var VALUE = DEDcatid.value;
+
+                                        $.ajax({
+                                            url: '/Home/setnewcat',
+                                            dataType: 'html',
+                                            data: {
+                                                cattitle: VALUE,
+                                            },
+                                            success: function (data) {
+
+                                                if (data === "1") {
+                                                    toastr.options = {
+                                                        "debug": false,
+                                                        "positionClass": "toast-top-center",
+                                                        "onclick": null,
+                                                        "fadeIn": 300,
+                                                        "fadeOut": 1000,
+                                                        "timeOut": 5000,
+                                                        "extendedTimeOut": 1000
+                                                    }
+
+                                                    toastr.success('دسته اصلی مورد نظر اضافه شد')
+
+                                                    setTimeout(
+                                                  function () {
+                                                      location.reload();
+                                                  }, 1500);
+
+
+                                                }
+                                                else if (data === "0") {
+                                                    toastr.options = {
+                                                        "debug": false,
+                                                        "positionClass": "toast-top-center",
+                                                        "onclick": null,
+                                                        "fadeIn": 300,
+                                                        "fadeOut": 1000,
+                                                        "timeOut": 5000,
+                                                        "extendedTimeOut": 1000
+                                                    }
+
+                                                    toastr.error('دسته اصلی مورد نظر وجود دارد')
+
+                                                }
+                                                else {
+                                                    toastr.options = {
+                                                        "debug": false,
+                                                        "positionClass": "toast-top-center",
+                                                        "onclick": null,
+                                                        "fadeIn": 300,
+                                                        "fadeOut": 1000,
+                                                        "timeOut": 5000,
+                                                        "extendedTimeOut": 1000
+                                                    }
+
+                                                    toastr.error('خطا')
+                                                }
+
+
+                                            },
+                                            error: function () {
+                                                alert("خطا")
+                                            }
+                                        });
+                                    })
+                                    function DEFcatokclicked(DEFcatok) {
+                                        
+                                    }
+                                </script>
+                            </div>
+
+
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" style="text-align:right">
+
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label style="font:bold; margin-left:20px" class="control-label component" for="first-name">
+                                لایه دوم -
+                            </label>
+                            <label class="control-label component" for="first-name">
+                                منو 1 : 
+                            </label>
+                            <div class="component">
+                                @Html.DropDownListFor(m => m.SelectedCat, Model.Cats, "--", new { id = "catslist01", style = "width:100%" })
+                            </div>
+                            <label class="control-label component" for="first-name">
+                              منو 2 :
+                            </label>
+                            <div class="component">
+                                <input type="text" id="SubCatName" name="last-name" required="required" class="form-control" style="width: 100%">
+                            </div>
+
+                            <div class="component " style="direction:rtl">
+
+                                <button id="DEFsubcatok" class="btn btn-success" onclick="DEFsubcatokclick(DEFsubcatok)">تایید</button>
+                            </div>
+                            <script>
+                                function DEFsubcatokclick(DEFsubcatok) {
+
+                                    var catVALUE = catslist01.value;
+                                     var subcatname = SubCatName.value;
+
+
+                                    $.ajax({
+                                        url: '/Home/setnewsubcat',
+                                        dataType: 'html',
+                                        data: {
+                                            catid: catVALUE,
+                                            subcattitle: subcatname
+                                        },
+                                        success: function (data) {
+
+                                            if (data === "1") {
+                                                toastr.options = {
+                                                    "debug": false,
+                                                    "positionClass": "toast-top-center",
+                                                    "onclick": null,
+                                                    "fadeIn": 300,
+                                                    "fadeOut": 1000,
+                                                    "timeOut": 5000,
+                                                    "extendedTimeOut": 1000
+                                                }
+
+                                                toastr.success('دسته فرعی مورد نظر اضافه شد')
+
+
+                                            }
+                                            else if (data === "0") {
+                                                toastr.options = {
+                                                    "debug": false,
+                                                    "positionClass": "toast-top-center",
+                                                    "onclick": null,
+                                                    "fadeIn": 300,
+                                                    "fadeOut": 1000,
+                                                    "timeOut": 5000,
+                                                    "extendedTimeOut": 1000
+                                                }
+
+                                                toastr.error('دسته فرعی مورد نظر وجود دارد')
+
+                                            }
+                                            else {
+                                                toastr.options = {
+                                                    "debug": false,
+                                                    "positionClass": "toast-top-center",
+                                                    "onclick": null,
+                                                    "fadeIn": 300,
+                                                    "fadeOut": 1000,
+                                                    "timeOut": 5000,
+                                                    "extendedTimeOut": 1000
+                                                }
+
+                                                toastr.error('خطا')
+                                            }
+
+
+                                        },
+                                        error: function () {
+                                            alert("خطا")
+                                        }
+                                    });
+                                }
+                            </script>
+
+                        </div>
+
+                        <div class="form-group">
+                            
+                        </div>
+
+                        <div class="form-group">
+                            <label style="font:bold; margin-left:20px" class="control-label component" for="first-name">
+                                لایه سوم -
+                            </label>
+
+                            <label class="control-label component" for="first-name">
+                                منو 1 :
+                            </label>
+                            <div class="component">
+                                @Html.DropDownListFor(m => m.SelectedCat, Model.Cats, "--", new { id = "catslist02", onchange = "GetSelectedTextValue(this)", style = "width:100%" })
+                            </div>
+                            <script>
+
+                                function GetSelectedTextValue(catslist02) {
+
+
+                                    var selectedValue = catslist02.value;
+
+                                $.ajax({
+                                    url: '/Home/getsubcatlist',
+                                    dataType: 'html',
+                                    data: {
+                                        catid: selectedValue
+                                    },
+                                    success: function (data) {
+
+                                        $('#subcatholder').html(data);
+
+
+                                    },
+                                    error: function () {
+                                        alert("nashod")
+                                    }
+                                });
+                            }
+
+                                $("#catslist02").change(function () {
+                                $(".sub2").css("display", "inline-block")
+                            })
+
+
+                            </script>
+                            <div id="subcatholder" class="component">
+
+                            </div>
+                            <label id="sub2" class="control-label component sub2" style="display:none">
+                                منو 3 : 
+                            </label>
+                            <div class="component sub2" style="display:none">
+                                <input type="text" id="SubCat2Name" name="SubCat2Name" required="required" class="form-control" style="width: 100%">
+                            </div>
+                            <div class="component sub2 " style="direction:rtl; display:none">
+                                <button id="CRMENU3" class="btn btn-success" onclick="CRMENU3ok(CRMENU3)">Submit</button>
+                            </div>
+                            <script>
+                                function CRMENU3ok(CRMENU3) {
+
+                                    var subcatid = subcatslist.value;
+                                   
+                                    var subcat2 = SubCat2Name.value;
+                                  
+
+                                   
+
+
+                                $.ajax({
+                                    url: '/Home/setnewsubcat2',
+                                    dataType: 'html',
+                                    data: {
+                                       
+                                        subcatid: subcatid,
+                                        subcat2: subcat2
+                                    },
+                                    success: function (data) {
+
+                                        if (data === "1") {
+                                            toastr.options = {
+                                                "debug": false,
+                                                "positionClass": "toast-top-center",
+                                                "onclick": null,
+                                                "fadeIn": 300,
+                                                "fadeOut": 1000,
+                                                "timeOut": 5000,
+                                                "extendedTimeOut": 1000
+                                            }
+
+                                            toastr.success('منوی 3 با موفقیت اضافه شد');
+                                            setTimeout(
+                                              function () {
+                                                  GetSelectedTextValue(catslist02);
+                                              }, 1500);
+
+
+                                        }
+
+                                        else {
+                                            toastr.options = {
+                                                "debug": false,
+                                                "positionClass": "toast-top-center",
+                                                "onclick": null,
+                                                "fadeIn": 300,
+                                                "fadeOut": 1000,
+                                                "timeOut": 5000,
+                                                "extendedTimeOut": 1000
+                                            }
+
+                                            toastr.error('خطا')
+                                        }
+
+
+                                    },
+                                    error: function () {
+                                        alert("خطا")
+                                    }
+                                });
+                            }
+                            </script>
+
+                        </div>
+                    </div>
+
+                        <div class="ln_solid"></div>
+                    
+                    
+                      <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" style="text-align:right">
+                            :حذف 
+                        </label>
+                       </div>
+                    <div class="form-group">
+                       
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                        منو 1 : 
+                        </label>
+                        <div class="col-md-2 col-sm-2 col-xs-6">
+                            @Html.DropDownListFor(m => m.SelectedCat, Model.Cats, "--", new { id = "catslist2", style = "width:100%" })
+                        </div>
+
+
+                        <div class="col-md-4 col-sm-4 col-xs-12 " style="direction:rtl">
+
+                            <button id="DELcat" class="btn btn-success" onclick="DELcatok(DELcat)">Submit</button>
+                        </div>
+                        <script>
+                            function DELcatok(DELcat) {
+
+                                var catVALUE = catslist2.value;
+                                 $.ajax({
+                                    url: '/Home/delnewcat',
+                                    dataType: 'html',
+                                    data: {
+                                        catid: catVALUE,
+                                         },
+                                    success: function (data) {
+
+                                        if (data === "1") {
+                                            toastr.options = {
+                                                "debug": false,
+                                                "positionClass": "toast-top-center",
+                                                "onclick": null,
+                                                "fadeIn": 300,
+                                                "fadeOut": 1000,
+                                                "timeOut": 5000,
+                                                "extendedTimeOut": 1000
+                                            }
+
+                                            toastr.success('دسته اصلی  مورد نظر حذف شد')
+
+                                            setTimeout(
+                                                  function () {
+                                                      location.reload();
+                                                  }, 1500);
+                                        }
+                                       
+                                        else {
+                                            toastr.options = {
+                                                "debug": false,
+                                                "positionClass": "toast-top-center",
+                                                "onclick": null,
+                                                "fadeIn": 300,
+                                                "fadeOut": 1000,
+                                                "timeOut": 5000,
+                                                "extendedTimeOut": 1000
+                                            }
+
+                                            toastr.error('خطا')
+                                        }
+
+
+                                    },
+                                    error: function () {
+                                        alert("خطا")
+                                    }
+                                });
+                            }
+                        </script>
+
+                    </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" style="text-align:right">
+                               
+                            </label>
+                        </div>
+                  
+                       <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            :دسته بندی اصلی
+                        </label>
+                        <div class="col-md-2 col-sm-2 col-xs-6">
+                            @Html.DropDownListFor(m => m.SelectedCat, Model.Cats, "--", new { id = "catslist3", onchange = "GetSelectedTextValue(this)", style = "width:100%" })
+                        </div>
+                       
+                        <script>
+
+                            function GetSelectedTextValue(catslist3) {
+                                
+
+                                var selectedValue = catslist3.value;
+
+                                $.ajax({
+                                    url: '/Home/getsubcatlist',
+                                    dataType: 'html',
+                                    data: {
+                                        catid: selectedValue
+                                    },
+                                    success: function (data) {
+
+                                        $('#subcatholder').html(data);
+
+                                    },
+                                    error: function () {
+                                        alert("nashod")
+                                    }
+                                });
+                            }
+
+                            
+                        </script>
+
+                        <div id="subcatholder">
+
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12 " style="direction:rtl">
+
+                            <button id="DELsubcat" class="btn btn-success" onclick="DELsubcatok(DELsubcat)">Submit</button>
+                        </div>
+                        <script>
+                               function DELsubcatok(DELsubcat) {
+
+                                  
+                                   var subcatid = subcatslist.value;
+
+
+                                   $.ajax({
+                                       url: '/Home/deletsubcat',
+                                       dataType: 'html',
+                                       data: {
+                                         
+                                           ID: subcatid
+                                       },
+                                       success: function (data) {
+
+                                           if (data === "1") {
+                                               toastr.options = {
+                                                   "debug": false,
+                                                   "positionClass": "toast-top-center",
+                                                   "onclick": null,
+                                                   "fadeIn": 300,
+                                                   "fadeOut": 1000,
+                                                   "timeOut": 5000,
+                                                   "extendedTimeOut": 1000
+                                               }
+
+                                               toastr.success('دسته فرعی مورد نظر حذف شد');
+                                               setTimeout(
+                                                 function () {
+                                                     GetSelectedTextValue(catslist3);
+                                                 }, 1500);
+                                              
+                                              
+                                           }
+                                         
+                                           else {
+                                               toastr.options = {
+                                                   "debug": false,
+                                                   "positionClass": "toast-top-center",
+                                                   "onclick": null,
+                                                   "fadeIn": 300,
+                                                   "fadeOut": 1000,
+                                                   "timeOut": 5000,
+                                                   "extendedTimeOut": 1000
+                                               }
+
+                                               toastr.error('خطا')
+                                           }
+
+
+                                       },
+                                       error: function () {
+                                           alert("خطا")
+                                       }
+                                   });
+                               }
+                           </script>
+
+                    </div>
+                   
+                        <div class="ln_solid"></div>
+
+                        <script>
+                           
+                        </script>
+
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

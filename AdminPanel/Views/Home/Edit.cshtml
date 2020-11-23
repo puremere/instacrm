@@ -1,0 +1,247 @@
+﻿@model AdminPanel.ViewModel.orderDT
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+ <div class="row">
+
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>تعریف محصول</h2>
+                <ul class="nav navbar-left panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#">Settings 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Settings 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                <div id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+
+
+
+
+
+
+
+                    @using (Html.BeginForm("Edit", "Home", FormMethod.Post,
+    new { enctype = "multipart/form-data", id = "signupformforedit" }))
+{
+                       <input style="display:none" value=@Model.ID type="text" id="ID" name="ID" required="required" class="form-control col-md-7 col-xs-12">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                نام :
+                            </label>
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <input value=@Model.title type="text" id="productname" name="productname" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+
+
+
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                توضیحات :
+                            </label>
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <textarea  id="productdesc" required="required" class="form-control" name="productdesc" style="height:170px">@Model.description</textarea>
+                            </div>
+
+
+
+
+
+                        </div>
+                        <div class="form-group">
+
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12 ">آپلود عکس:</label>
+                            <input class="col-md-4 col-sm-4 col-xs-12 " style="display: inline-block; float: right" id="fileupload" type="file" name="file" multiple="multiple" accept="image/*">
+                            <div class="col-md-4 col-sm-4 col-xs-12 " style="direction:rtl">
+                                @*<button class="btn btn-primary" type="button">Cancel</button>
+                                    <button class="btn btn-primary" type="reset">Reset</button>*@
+                                @* <button id="CRprocuct" class="btn btn-success" onclick="CRproductclicked(CRprocuct)">تایید</button>*@
+                                <div id="CRprocuct" class="btn btn-success" onclick="CRproductclicked(CRprocuct)">تایید</div>
+
+                                <script>
+                                    function CRproductclicked(CRprocuct) {
+
+                                        var name = productname.value;
+                                        var desc = productdesc.value;
+                                        var file = fileupload.value;
+
+
+
+                                        if (name != ""  & desc != "") {
+                                            $("#signupformforedit").submit();
+                                        }
+
+                                        else {
+                                            toastr.options = {
+                                                "debug": false,
+                                                "positionClass": "toast-top-center",
+                                                "onclick": null,
+                                                "fadeIn": 300,
+                                                "fadeOut": 1000,
+                                                "timeOut": 5000,
+                                                "extendedTimeOut": 1000
+                                            }
+                                            toastr.error('تمامی موارد را کامل کنید')
+                                        }
+
+
+                                    }
+                                </script>
+                            </div>
+
+                        </div>
+    
+                    }
+
+                    <div class="form-group" style="margin-right:10%">
+                       
+                        @{
+                            if (Model.imagelist != null)
+                            {
+                                
+                                foreach (var item in Model.imagelist)
+                            {
+                                string ID = item.ID.ToString();
+                                string deletetid = "addtocart" + ID;
+                                string title = "titleof" + ID;
+                               
+                                <div class="imagelistholder">
+
+                                    <div class="con">
+
+                                        <img src="@Url.Action("Thumbnail", "Home", new { filename = item.title })" data-imagezoom="true" class=" back">
+                                        <button id=@deletetid class="btn deleteimage">حذف</button>
+                                        <div style="display:none" id=@title>@item.title</div>
+                                    </div>
+
+                                    <style>
+                                        .imagelistholder {
+                                            display: inline-block;
+                                            width: 200px;
+                                            padding: 5px;
+                                            border: 1px solid #eee;
+                                            box-shadow: 3px 3px #eee;
+                                            border-radius: 25px;
+                                        }
+
+                                        .con {
+                                            position: relative;
+                                            width: 100%;
+                                        }
+
+                                            /* Make the image responsive */
+                                            .con img {
+                                                width: 100%;
+                                                height: auto;
+                                                border-radius: 25px;
+                                            }
+
+                                            /* Style the button and place it in the middle of the container/image */
+                                            .con .btn {
+                                                position: absolute;
+                                                top: 50%;
+                                                left: 50%;
+                                                transform: translate(-50%, -50%);
+                                                -ms-transform: translate(-50%, -50%);
+                                                background-color: #555;
+                                                color: white;
+                                                font-size: 16px;
+                                                padding: 12px 24px;
+                                                border: none;
+                                                cursor: pointer;
+                                                border-radius: 5px;
+                                            }
+
+                                                .con .btn:hover {
+                                                    background-color: black;
+                                                }
+                                    </style>
+
+
+                                </div>
+                               
+                            }
+                            }
+                            
+                            
+                           
+                            
+                        }
+
+                        <div style="display:none" id="orderidholder" >@Model.ID</div>
+                        <script>
+
+
+                            $(".deleteimage").click(function () {
+                                 
+                                var orderid = $("#orderidholder").text();
+                                var id = this.id;
+                                var res = id.substring(9, id.length);
+                                var titleid = "titleof" + res;
+                                var name = $('#' + titleid).text();
+                                
+
+                               
+
+
+
+                                        $.ajax({
+                                            url: '/Home/Deleteimage',
+                                            dataType: 'html',
+                                            data: {
+                                                id: id,
+                                                title: name
+                                            },
+                                            success: function (data) {
+                                                window.location.href = "/Home/Edit?id =" + orderid;
+                                                window.location.reload();
+                                            },
+                                            error: function () {
+
+                                            }
+                                        });
+                                   })
+                        </script>
+
+                    </div>
+                    <div class="ln_solid"></div>
+
+
+
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+

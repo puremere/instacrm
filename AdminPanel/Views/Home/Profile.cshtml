@@ -1,0 +1,362 @@
+﻿@model AdminPanel.ViewModel.userinfo
+@{
+    ViewBag.Title = "Profile";
+}
+
+<div class="row" id="div1" style="display:block">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>مشاهده محصول</h2>
+                <ul class="nav navbar-left panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#">Settings 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Settings 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                <div id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+
+
+
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            نام :
+                        </label>
+                        <div style="padding-top: 8px;" class="col-md-5 col-sm-5 col-xs-12">
+                            @Model.fullname
+                        </div>
+
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            موبایل :
+                        </label>
+                        <div style="padding-top: 8px;" class="col-md-5 col-sm-5 col-xs-12">
+                            @Model.mobile
+                        </div>
+
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            تلفن :
+                        </label>
+                        <div style="padding-top: 8px;" class="col-md-5 col-sm-5 col-xs-12">
+                            @Model.phone
+                        </div>
+
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            درباره ما :
+                        </label>
+                        <div style="padding-top: 8px;" class="col-md-5 col-sm-5 col-xs-12">
+                            @Model.aboutus
+                        </div>
+
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            آدرس :
+                        </label>
+                        <div style="padding-top: 8px;" class="col-md-5 col-sm-5 col-xs-12">
+                            @Model.address
+                        </div>
+
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            instagram :
+                        </label>
+                        <div style="padding-top: 8px;" class="col-md-5 col-sm-5 col-xs-12">
+                            @Model.instagram
+                        </div>
+
+
+
+
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                            Telegram :
+                        </label>
+                        <div style="padding-top: 8px;" class="col-md-5 col-sm-5 col-xs-12">
+                            @Model.telegram
+                        </div>
+
+                        <div class="col-md-5 col-sm-5 col-xs-12">
+                            <div id="editbtn" class="btn btn-success" onclick="editbtnclicked(editbtn)">تایید</div>
+                        </div>
+                        <script>
+                            function editbtnclicked(editbtn) {
+
+                                $("#div1").css("display", "none")
+                                $("#div2").css("display", "block")
+
+
+                            }
+                        </script>
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+
+
+                    <div class="ln_solid"></div>
+
+
+
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<div class="row" id="div2" style="display:none">
+
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>تعریف محصول</h2>
+                <ul class="nav navbar-left panel_toolbox">
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>
+                                <a href="#">Settings 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Settings 2</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br />
+                <div id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
+
+
+
+
+
+                   
+
+
+
+                    @using (Html.BeginForm("Profile", "Home", FormMethod.Post,
+    new { enctype = "multipart/form-data", id = "infosigneupform" }))
+                    {
+                        <input style="display:none" value=@Model.ID type="text" id="fullname" name="fullname" required="required" class="form-control col-md-7 col-xs-12">
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                نام :
+                            </label>
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <input value=@Model.fullname type="text" id="fullname" name="fullname" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+
+
+
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                 موبایل :
+                            </label>
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <input value=@Model.mobile type="text" id="mobile" name="mobile" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+
+
+
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                تلفن :
+                            </label>
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <input value=@Model.phone type="text" id="phone" name="phone" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+
+
+
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                درباره ما :
+                            </label>
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <textarea id="aboutus" required="required" class="form-control" name="aboutus" style="height:170px">@Model.aboutus</textarea>
+                            </div>
+
+
+
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                آدرس :
+                            </label>
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <textarea  id="address" required="required" class="form-control" name="address" style="height:170px">@Model.address</textarea>
+                            </div>
+
+
+
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                instagram :
+                            </label>
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <input value=@Model.instagram type="text" id="instagram" name="instagram" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+
+
+
+
+
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12" for="first-name">
+                                Telegram :
+                            </label>
+                            <div class="col-md-5 col-sm-5 col-xs-12">
+                                <input value=@Model.telegram type="text" id="telegram" name="telegram" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+
+
+                         
+                           
+
+                            <div id="CRprofile" class="btn btn-success" onclick="CRprofileclicked(CRprofile)">تایید</div>
+
+                            <script>
+                                function CRprofileclicked(CRprofile) {
+
+                                    //var name = fullname.value;
+                                    //var phone = phone.value;
+                                    //var mobile = mobile.value;
+                                    //var aboutus = aboutus.value;
+                                    //var address = address.value;
+                                    //var insta = instagram.value;
+                                    //var telegram = telegram.value;
+
+
+
+                                    $("#infosigneupform").submit();
+
+                                    //else {
+                                    //    toastr.options = {
+                                    //        "debug": false,
+                                    //        "positionClass": "toast-top-center",
+                                    //        "onclick": null,
+                                    //        "fadeIn": 300,
+                                    //        "fadeOut": 1000,
+                                    //        "timeOut": 5000,
+                                    //        "extendedTimeOut": 1000
+                                    //    }
+                                    //    toastr.error('تمامی موارد را کامل کنید')
+                                    //}
+
+
+                                }
+                            </script>
+
+                        </div>
+                        
+                       
+                    }
+                    
+
+
+
+
+                    <div class="ln_solid"></div>
+
+
+
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+

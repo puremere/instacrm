@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "تاییده پرداخت";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*9910100368303243
+6219756886*@
+
+<style>
+    .p {
+        width: 70%;
+        margin: auto;
+        align-content: center;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+    .childofp {
+        margin: 3%;
+    }
+
+        .childofp p {
+            text-align: right
+        }
+</style>
+
+
+
+@{
+    if (@ViewBag.message == "موفق")
+    {
+        <div class="container" style="text-align:center; direction:rtl; padding:50px 50px;background-color: white;margin-top: 20px;border: 1px #ddd solid;border-radius: 10px;">
+
+            <div class="row" style="display:flex">
+                <img style="width:150px; float:left; margin:auto" src="~/images/successPayment.png" />
+            </div>
+
+            <h4 style="text-align:center; float:right;color:#4d4d4d;padding: 30px;width:100%; ">
+                سفارش شما با موفقیت در سیستم ثبت شد
+            </h4>
+            <h4 style="text-align:center;font-size:18px;">شماره فاکتور:   <span style="font-size:25px"></span>@ViewBag.message3 </h4>
+            <div class="btn btn-default" style="margin:25px"><a href="/Home/index">بازگشت به صفحه اول</a> </div>
+
+
+
+
+
+        </div>
+
+    }
+    else
+    {
+        <div class="container" style="text-align:center; direction:rtl; padding:50px 50px;background-color: white;margin-top: 20px;border: 1px #ddd solid;border-radius: 10px;">
+          
+            <div class="row" style="display:flex">
+
+                <img src="~/images/paymentError.png" style="width:150px; float:left; margin:auto" />
+            </div>
+
+            <h4 style="text-align:center; float:right;color:#4d4d4d;padding: 30px;width:100%; ">
+                خطا ! در پروسه پرداخت خطایی رخ داده است لطفاً مجدداً تلاش نمایید \n شماره خطا :   @ViewBag.message
+
+            </h4>
+
+            <div class="btn btn-default" style="margin:25px"><a href="/Home/index">بازگشت به صفحه اول</a> </div>
+
+
+
+
+
+        </div>
+
+    }
+}
+
+
+
+
+
+
+

@@ -1,0 +1,329 @@
+﻿.compareTilte {
+    width: 100%;
+    direction: rtl;
+    padding: 10px;
+    font-size: 18px
+}
+
+.compareTilte2 {
+    width: 100%;
+    direction: rtl;
+    padding: 30px 50px 10px 50px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#productHolder {
+    background-color: white;
+    position: relative;
+    margin: 20px;
+    border: 1px solid #ddd;
+    direction: rtl;
+    display: flex;
+    box-shadow: 2px 2px 5px -1px rgba(148,149,153,1);
+}
+
+#FeatureHolder {
+    position: relative;
+    direction: rtl;
+    width: 98%;
+    display: block;
+    margin: auto;
+}
+.itemProdut {
+    width: 25%;
+    border-left: 1px solid #ddd;
+    padding: 25px;
+    display: inline-block;
+    border: none
+}
+
+    .itemProdut img {
+        max-width: 100%;
+        max-height: 250px;
+        display: block;
+        margin: auto;
+    }
+
+    .itemProdut p.title {
+        margin: 20px 0px;
+        font-size: 14px;
+        font-weight: 400;
+        text-align: center;
+        max-height: 58px;
+        min-height: 50px
+    }
+
+    .itemProdut p.price {
+        text-align: center;
+        font-size: 18px;
+        color: red;
+    }
+
+    .itemProdut a {
+        margin-top: 10px;
+        font-size: .929rem;
+        line-height: 1.692;
+        border-radius: 8px;
+        background-color: #00bfd6;
+        border: 1px solid #13a3b7;
+        padding: 11px 31px;
+        color: #fff;
+        display: block;
+        margin: auto;
+        margin-top: 20px
+    }
+
+.c-compare__placement {
+    border-radius: 19px;
+    border: 5px dashed #d2d2d2;
+    background: none;
+    max-width: 270px;
+    margin: auto;
+    display: block;
+    padding: 35px;
+    font-size: 15px;
+    font-size: 1.071rem;
+    line-height: 1.467;
+    color: #b3b3b3;
+    cursor: pointer;
+}
+
+    .c-compare__placement::before {
+        content: "\f319";
+        font-size: 107px;
+        display: block;
+        margin-bottom: 15px;
+        font-family: 'Font Awesome 5 Pro'
+    }
+
+.btn-primary {
+    margin-top: 10px;
+    font-size: .929rem;
+    line-height: 1.692;
+}
+
+.itemProdut a.btn-primary--gray {
+    font-size: .929rem;
+    line-height: 1.692;
+    border-radius: 8px;
+    background-color: #00bfd6;
+    border: 1px solid #13a3b7;
+    padding: 11px 31px;
+    color: #fff;
+    display: block;
+    margin: auto;
+    margin-top: auto;
+    margin-top: 20px;
+    background-color: #7a7a7a;
+    border: unset;
+}
+
+.c-ui-input {
+    position: relative;
+    display: inline-block;
+    width: 70%;
+    line-height: 22px;
+}
+
+.c-ui-input--search::before {
+    content: "\f002";
+    position: absolute;
+    right: 15px;
+    top: 13px;
+    font-size: 20px;
+    font-family: 'Font Awesome 5 Pro'
+}
+
+.c-form-compare-search .c-ui-input__field, .c-form-compare-search .dk-selectric-input {
+    border-radius: 0 5px 5px 0;
+    border-left: none;
+}
+
+.c-ui-input--search .c-ui-input__field, .c-ui-input--search .dk-selectric-input {
+    padding-right: 45px;
+}
+
+.c-ui-input__field, .dk-selectric-input {
+    background: #fff;
+    border: 1px solid #c8c8c8;
+    color: #717171;
+    font-size: 1rem;
+    line-height: 1.571;
+    padding: 11px 12px;
+    width: 100%;
+    letter-spacing: -.8px;
+}
+.c-box-tabs + .c-box {
+    margin-top: 0;
+}
+
+.c-box--tabs {
+    padding: 35px 0px 35px 0px;
+    margin-bottom: 58px;
+    border-top: none;
+    width: 100%;
+    display: inline-block;
+}
+
+.c-params__headline {
+    color: #6f6f6f;
+    font-size: 30px;
+    font-size: 2.143rem;
+    line-height: 1.467;
+    font-weight: 500;
+    margin-bottom: 35px;
+    letter-spacing: -.6px;
+}
+
+.c-params__title {
+    color: #4d4d4d;
+    margin-bottom: 25px;
+    position: relative;
+    padding-right: 19px;
+}
+
+.c-params__headline span, .c-params__title {
+    font-size: 1.143rem;
+    line-height: 1.375;
+    letter-spacing: -.3px;
+}
+
+.c-params__headline span {
+    display: block;
+    color: #a7a7a7;
+}
+
+.c-params__list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 70px;
+    width: 100%;
+}
+
+.c-params__title::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 7px;
+    width: 0;
+    height: 0;
+    border-color: transparent transparent transparent #00bfd6;
+    border-style: solid;
+    border-width: 7px 0 0 7px;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.c-params__list li {
+    display: flex;
+    flex-wrap: wrap;
+    direction: rtl;
+}
+
+.c-params__list-key, .c-params__list-value {
+}
+
+.c-params__list-key {
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.c-params__list-key, .c-params__list-value {
+    /*padding-right: 8px;
+        padding-left: 8px;*/
+}
+
+.c-params__list-value {
+    flex: 0 0 100%;
+    max-width: 100%;
+    display: flex;
+    background-color: white;
+}
+
+.c-params__list-key, .c-params__list-value {
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    -webkit-box-flex: 0;
+}
+
+    .c-params__list-key .block, .c-params__list-value .block {
+        display: block;
+        background: #fafafa;
+        padding: 14px 18px 12px;
+        font-size: 13px;
+        font-size: .929rem;
+        line-height: 1.692;
+        color: #4d4d4d;
+        letter-spacing: -.3px;
+        min-height: 47px;
+        position: relative;
+        text-align: center;
+        background-color: #fff;
+        width: 25%;
+        display: inline-block;
+        border-left: 1px solid #ddd;
+    }
+
+    .c-params__list-key .block {
+        background-color: #eee;
+        width: 100%;
+        text-align: right;
+        padding-right: 55px;
+        font-weight: 600;
+        font-size: 16px;
+    }
+.imageHolder img {
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down
+}
+
+@media only screen and (max-width: 960px) {
+    .c-params__list-value .block{
+        width:50%
+    }
+    .c-params__list-key .block{
+        padding-right:15px;
+    }
+
+    .c-compare__placement::before {
+        font-size: 80px;
+        height: 50%;
+        padding: 10px
+    }
+
+    .itemProdut p.title {
+        margin: 5px 0px;
+        font-size: 12px;
+    }
+    .itemProdut p.price{
+        display:none;
+    }
+    .c-compare__placement {
+        font-size: 0.8rem;
+        height: 100%;
+        padding: 10px;
+    }
+    compare__placement{
+
+    }
+    .itemProdut a {
+        display: none
+    }
+        .itemProdut a.btn-primary--gray{
+            display:none
+        }
+        .itemProdut {
+            width: 50%;
+            border-left: 1px solid #ddd;
+            padding: 5px;
+        }
+    #productHolder{
+        margin:5px;
+    }
+    .compareHeader{
+        display:none
+    }
+}

@@ -1,0 +1,723 @@
+﻿@using instaPayPortal.ViewModel;
+@model instaPayPortal.ViewModel.TimeList
+@{
+    /**/
+
+    ViewBag.Title = "نهایی سازی سفارش";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@section scripts{
+
+    <link rel="stylesheet" href="https://cdn.map.ir/web-sdk/1.4.2/css/mapp.min.css">
+    <link rel="stylesheet" href="https://cdn.map.ir/web-sdk/1.4.2/css/fa/style.css">
+    <link href="~/Content/endOrderStyle.css" rel="stylesheet" />
+    <link href="~/Content/toastr.css" rel="stylesheet" />
+    <script src="~/Scripts/toastr.js"></script>
+}
+
+
+@{
+    <script>
+        function addCommas(nStr) {
+            nStr += '';
+            var x = nStr.split('.');
+            var x1 = x[0];
+            var x2 = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1)) {
+                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+            }
+            return x1 + x2;
+        }
+
+    </script>
+
+
+    string fullname = "";
+    string phone = "";
+    string address = "";
+    string city = "";
+    string ostan = "";
+
+
+    <div id="mapHolder" style="z-index:999; position:fixed;top:0; left:0; width:100%; height:100%;  background-color:white; display:none; text-align:center; background-color:white;  /* Negative half of width. */">
+
+        <div id="map" style="margin-top:5%; width: 100%; margin:auto; height: 90%; background: #eee; border: 2px solid #aaa;"></div>
+        <div id="closemap" class="btn btn-success" style="margin:auto; margin-top:10px">تایید موقعیت مکانی</div>
+    </div>
+
+    <form id="endOrderForm" name="endOrderForm" action="EndOrder" method="post">
+
+        <input hidden name="lat" id="lat" value="0" />
+        <input hidden name="lon" id="lon" value="0" />
+
+        <div id="app" style="width:100%; height:100%"></div>
+
+        <div style="margin:30px 0px 30px 0px"></div>
+        <div class="main_container" style="width: 50%; margin: auto">
+            <div class="containerofform">
+                <div class="header"><p>اطلاعات سفارش</p></div>
+                <div class="sectionBody">
+                    <div class="row ">
+                        <div class="col-lg-6 col-sm-6 row1 " style=" display: flex; align-items: center; border-bottom:1px solid #ddd">
+                            <div class="inputdiv1"> فروشنده:</div>
+                            <div class="inputdiv2" style="text-align: center;">
+                                <img style="margin-right:20px; width:90px" src="@Model.OrderInfo.First().meta" />
+                                <p style="text-align:center; font-size:22px">@Model.OrderInfo.First().fullname</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 row1" style=" border-bottom:1px solid #ddd">
+                            <div class="inputdiv1"><p>عنوان سفارش: </p></div>
+                            <div class="inputdiv2" style="text-align:center; font-size:18px;"><p>@Model.OrderInfo.First().Producttitle</p></div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <div class="containerofform">
+                <div class="header"><p>اطلاعات شخصی</p></div>
+                <div class="sectionBody">
+                    <div class="row ">
+                        <div class="col-lg-6 col-sm-6 row1 ">
+                            <div class="inputdiv1"><p>شهر</p></div>
+                            <div class="inputdiv2"><input id="city" name="city" class="form-control field" type="text" value="@city" /></div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 row1">
+                            <div class="inputdiv1"><p>استان</p></div>
+                            <div class="inputdiv2"><input id="country" name="country" class="form-control field" type="text" value="@ostan" /></div>
+                        </div>
+
+                    </div>
+                    <div class="row ">
+                        <div class="col-lg-6 col-sm-6 row1 ">
+                            <div class="inputdiv1"><p>نام و نام خانوادگی</p></div>
+                            <div class="inputdiv2"><input id="fullname" name="fullname" class="form-control field" type="text" value="@fullname" /></div>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 row1">
+                            <div class="inputdiv1"><p>آدرس</p></div>
+                            <div class="inputdiv2"><input id="address" name="address" class="form-control field" type="text" value="@address" /></div>
+                        </div>
+
+                    </div>
+                    <div class="row ">
+                        <div class="col-lg-6 col-sm-6 row1">
+                            <div class="inputdiv1"><p>شماره تلفن</p></div>
+                            <div class="inputdiv2"><input id="phonenumber" name="phonenumber" class="form-control field" type="text" value="@phone" /></div>
+                        </div>
+                        @*<div class="col-lg-6 col-sm-6 row1 ">
+                                <div class="inputdiv1"><p>کد پستی</p></div>
+                                <div class="inputdiv2"><input id="postalcode" name="postalcode" class="form-control field" type="text" /></div>
+                            </div>*@
+
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="containerofform">
+                <div class="header"><p> زمان ارسال</p></div>
+                <div class="sectionBody">
+                    <div class="row ">
+                        @{
+                            if (Model.times != null)
+                            {
+
+                                foreach (var item in Model.times)
+                                {
+
+                                    int index = Model.times.IndexOf(item);
+                                    string checkname = "check" + index;
+                                    if (index == 0)
+                                    {
+                                        <div class="col-lg-6 col-sm-6 slave" id="@checkname">
+                                            @foreach (var detail in item.hours)
+                                            {
+
+                                                string finalname = "final" + detail.ID;
+
+                                                <div class="halfrow">
+                                                    @if (@detail.isChecked == true)
+                                                    {
+                                                        <i class="fa fa-check finalrow" id="@finalname"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fa fa-check finalrow" id="@finalname" style="display:none"></i>
+                                                    }
+
+                                                    <p>@detail.title</p>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-lg-6 col-sm-6 slave" id="@checkname" style="display:none">
+                                            @foreach (var detail in item.hours)
+                                            {
+
+                                                string finalname = "final" + detail.ID;
+
+                                                <div class="halfrow ">
+                                                    @if (@detail.isChecked == true)
+                                                    {
+                                                        <i class="fa fa-check finalrow" id="@finalname"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fa fa-check finalrow" id="@finalname" style="display:none"></i>
+                                                    }
+
+                                                    <p>@detail.title</p>
+                                                </div>
+                                            }
+                                        </div>
+                                    }
+
+                                }
+
+                                <div class="col-lg-6 col-sm-6 Mmaster">
+                                    @foreach (var item in Model.times)
+                                    {
+                                        int index = Model.times.IndexOf(item);
+                                        string checkname = "check" + index;
+                                        <div class="halfrow master">
+                                            @if (@item.isChecked == true)
+                                            {
+                                                <i class="fa fa-check" id="@checkname"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-check" id="@checkname" style="display:none"></i>
+                                            }
+
+                                            <p>@item.title</p>
+                                        </div>
+                                    }
+                                </div>
+
+                            }
+                        }
+                        <script>
+                            $(document).ready(function () {
+                                $(".master").click(function () {
+                                    $(".fa-check").css("display", "none");
+                                    var i = $(this).children();
+                                    i.css("display", "block");
+
+                                    var id = i.attr("id");
+
+                                    $(".slave").css("display", "none");
+                                    $("#" + id).css("display", "block");
+                                    $("#" + id).children().children().first().css("display", "block");
+                                    $("#hourid").val($("#" + id).children().children().first().attr("id"));
+
+
+                                })
+                                $(".slave .halfrow").click(function () {
+                                    $(".finalrow").css("display", "none");
+                                    var i = $(this).children();
+                                    i.css("display", "block");
+                                    var id = i.attr("id");
+                                    $("#hourid").val(id);
+                                })
+                            })
+                        </script>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="containerofform  mapsection">
+                <div class="header"><p>موقعیت مکانی </p></div>
+                <div class="sectionBody">
+                    <div class="row ">
+
+                        <div class="row" style="width:80%; margin:auto;  color:#2585bd">
+                            <div style="display:flex">
+                                <div style="margin:auto" id="showMap" class="btn btn-success">انتخاب</div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="containerofform">
+                <div class="header"><p> کد تخفیف</p></div>
+                <div class="sectionBody">
+                    <div class="row ">
+                        <div style="padding:7px 15px; width:70%; margin-right : auto; margin-left: auto; border-bottom:2px solid green">
+                            <div class="row">
+                                <i class="fa fa-pen" style="float:right; width:10%"></i><input id="discount" style="border:none; float:left; width:90%" />
+
+                            </div>
+
+                        </div>
+                        <div class="row" style="width:80%; margin:auto;  color:#2585bd">
+                            <div style="float:left" id="discountConfirm" class="btn-link-spoiler btn-link-spoiler--edit">
+                                ثبت کد تخفیف
+                            </div>
+                            <script>
+                                $('#discountConfirm').click(function () {
+
+                                    var phone = $('#phonenumber').val();
+
+                                    if (phone != "") {
+
+                                        var discount = $('#discount').val();
+                                      
+                                        $.ajax({
+                                            url: '/Home/SetDiscount',
+                                            dataType: 'html',
+                                            data: {
+                                                val: discount,
+                                                phone : phone
+                                            },
+                                            success: function (data) {
+
+                                                let obj = jQuery.parseJSON(data);
+
+                                                if (obj.message.length > 0) {
+                                                    toastr.options = {
+                                                        "debug": false,
+                                                        "positionClass": "toast-top-center",
+                                                        "onclick": null,
+                                                        "fadeIn": 300,
+                                                        "fadeOut": 1000,
+                                                        "timeOut": 5000,
+                                                        "extendedTimeOut": 1000
+                                                    }
+                                                    toastr.error(obj.message);
+
+                                                    // let price = parseInt($("#finalprice").val())
+
+                                                }
+                                                else {
+                                                    var mot = $("#price").text().replace(",", '')
+                                                    mot = mot.replace(',', "");
+                                                   
+                                                    if (parseInt(mot) - parseInt(obj.price) > 0) {
+                                                        toastr.options = {
+                                                            "debug": false,
+                                                            "positionClass": "toast-top-center",
+                                                            "onclick": null,
+                                                            "fadeIn": 300,
+                                                            "fadeOut": 1000,
+                                                            "timeOut": 5000,
+                                                            "extendedTimeOut": 1000
+                                                        }
+                                                        toastr.success("کد تخفیف اعمال شد");
+                                                        if (addCommas(parseInt(mot) - parseInt(obj.price)) > 0) {
+                                                            $("#finalprice").text(addCommas(parseInt(mot) - parseInt(obj.price)));
+                                                        }
+                                                        else {
+                                                            $("#finalprice").text("0");
+                                                        }
+                                                       
+                                                        //$("#totalprice").text(addCommas(parseInt(mot) - parseInt(obj.price) + parseInt(del)))
+                                                        $("#finaldiscount").text(obj.price);
+                                                        
+
+                                                    }
+                                                }
+                                            },
+                                            error: function () {
+
+                                            }
+
+                                        })
+                                    }
+                                    else {
+
+                                     
+                                        toastr.options = {
+                                            "debug": false,
+                                            "positionClass": "toast-top-center",
+                                            "onclick": null,
+                                            "fadeIn": 300,
+                                            "fadeOut": 1000,
+                                            "timeOut": 5000,
+                                            "extendedTimeOut": 1000
+                                        }
+                                        toastr.error("شماره موبایل خود را وارد کنید");
+                                    }
+
+                                })
+                            </script>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="containerofform">
+                <div class="header"><p> مبلغ نهایی</p></div>
+                <div class="sectionBody">
+                    <div class="row ">
+
+                        <div id="finalPriceHolder" style="">
+                            <div class="row priceitem">
+                                <p class="col-lg-6 col-sm-6 Holder"> <i id="price">@Model.OrderInfo.First().PriceNow</i>&nbsp;تومان</p>
+                                <p class="col-lg-6 col-sm-6">مبلغ</p>
+
+                            </div>
+                            <div class="row priceitem">
+                                <p class="col-lg-6 col-sm-6 Holder"> <i id="finaldiscount">0</i>&nbsp;تومان</p>
+                                <p class="col-lg-6 col-sm-6"> تخفیف</p>
+
+                            </div>
+                            <div class="row priceitem">
+                                <p class="col-lg-6 col-sm-6 Holder"> <i id="finalprice">@Model.OrderInfo.First().PriceNow</i>&nbsp;تومان</p>
+                                <p class="col-lg-6 col-sm-6"> مبلغ نهایی</p>
+
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+            @*<div class="containerofform">
+                    <div class="header"><p> روش پرداخت</p></div>
+                    <div class="sectionBody">
+                        <div class="row " style="direction:rtl;">
+                            <div class="col-lg-6 col-sm-6 " id="inplace" style="cursor:pointer; float:right">
+                                <div class="halfrow">
+                                    <i class="fa fa-check "></i>
+
+                                    <p>پرداخت درمحل</p>
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-6 col-sm-6 " id="internet" style="cursor:pointer; float:right">
+                                <div class="halfrow">
+                                    <i class="fa fa-check " style="display:none"></i>
+
+                                    <p>زرین پال</p>
+                                </div>
+
+                            </div>
+
+
+
+                            <script>
+                                $("#mellat").click(function () {
+                                    $(".halfrow i").css("display", "none");
+                                    $(this).children().children("i").css("display", "inline-block");
+                                    $("#payment").val("3");
+                                })
+                                $("#internet").click(function () {
+                                    $(".halfrow i").css("display", "none");
+                                    $(this).children().children("i").css("display", "inline-block");
+                                    $("#payment").val("1");
+                                })
+                                $("#inplace").click(function () {
+                                    $(".halfrow i").css("display", "none");
+                                    $(this).children().children("i").css("display", "inline-block");
+                                    $("#payment").val("2");
+                                })
+                            </script>
+                        </div>
+                    </div>
+                </div>*@
+
+
+
+
+            @*<div id="finalconfirm" class="btn-link-spoiler btn-link-spoiler--edit">
+                    تایید اطلاعات
+                </div>*@
+            <div style="width:100%; text-align:center; padding:20px">
+                <div id="finalconfirm" class="btn btn-success" style=" width: 60%;  padding: 10px; font-size: 14px; margin: 0 auto;">
+                    پرداخت
+                </div>
+            </div>
+
+        </div>
+        @{
+            var value = "final" + @Model.times[0].hours[0].ID;
+            <input hidden id="hourid" name="hourid" value=@value />
+            <input hidden id="payment" name="payment" value="1" />
+        }
+
+        <div style="margin:30px 0px 30px 0px"></div>
+    </form>
+}
+
+
+<script>
+    //$(document).ready(function () {
+    //    $("#mapHolder").css("width", "0");
+    //    $("#mapHolder").css("height", "0");
+    //})
+
+    $(".panel").css("display", "block");
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+</script>
+<script>
+    $(".field").on('input', function () {
+
+        var thisval = $(this).val();
+
+        if (thisval.length > 1) {
+            $(this).css("border-color", "#b5afaf");
+
+        }
+        else {
+            $(this).css("border-color", "red");
+        }
+
+    })
+    $("#finalconfirm").click(function () {
+
+
+
+        var address = $("#address");
+        var phone = $("#phonenumber");
+        var postalcode = $("#postalcode");
+        var fullname = $("#fullname");
+        var city = $("#city");
+        var country = $("#country");
+        var hourid = $("#hourid");
+        var counter = 0;
+        var lat = $("#lat").val();
+
+        $(".field").each(function () {
+            var val = $(this).val();
+
+            if (val === "") {
+                $(this).css("border-color", "red");
+                $("#verifyflag").text("1");
+                counter = counter + 1;
+            }
+
+        })
+        if (counter === 0) {
+
+            if (lat.length > 4) {
+                //  alert(alt.length)
+                $("form#endOrderForm").submit();
+            }
+            else {
+                alert("لطفاً موقعیت خود را انتخاب کنید")
+            }
+
+
+
+        }
+
+    })
+</script>
+
+
+<script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/mapp.env.js"></script>
+<script type="text/javascript" src="https://cdn.map.ir/web-sdk/1.4.2/js/mapp.min.js"></script>
+
+
+<script type="text/javascript">
+
+    var latitude;
+    function showLocation(position) {
+        var lat = position.coords.latitude;
+        var lon = position.coords.longitude;
+
+        var myMap = new L.Map('map', {
+            minZoom: 1,
+            maxZoom: 20,
+            center: [lat, lon],
+            zoom: 18
+        });
+        var greenIcon = new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        L.TileLayer.wmsHeader(
+            "https://map.ir/shiveh",
+            {
+                layers: "Shiveh:Shiveh",
+                format: "image/png",
+                minZoom: 1,
+                maxZoom: 20
+            },
+            [
+                {
+                    header: "x-api-key",
+                    value: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjdjZTBhMDNiYmZiOWI3MWYxZTYwYzFiNjg2MTdkMTljZTA2Y2U4MjEzMzRlNjRkZjllNDZiYTUwMmE5NmI2YjgxMDFmYmE1Zjk1MTNjOGUzIn0.eyJhdWQiOiI4NjY0IiwianRpIjoiN2NlMGEwM2JiZmI5YjcxZjFlNjBjMWI2ODYxN2QxOWNlMDZjZTgyMTMzNGU2NGRmOWU0NmJhNTAyYTk2YjZiODEwMWZiYTVmOTUxM2M4ZTMiLCJpYXQiOjE1ODY1OTQ4MDEsIm5iZiI6MTU4NjU5NDgwMSwiZXhwIjoxNTg5MTg2ODAxLCJzdWIiOiIiLCJzY29wZXMiOlsiYmFzaWMiXX0.dCY2mtjog8J2xVXPS2FhqnGgoqrYq5mYAjqK3XxWrDDIQsv8p9lbF9ZHlSidZi3DN7EkhY6Py3E7yBJiZ_iBWhAyrJ6qpjgjEm8Eu-I0m2h1UVkrJqObtWzkaBRyl_WRxWP7hAcbSve-g5OIrWoCSkyeW_R8NqyfPD-4xMrBl3g78klaQlZbxU19rNU2OcFj8IRCMeepwiQNgKEViOuStQOqnJqBc7ofzPzr8okUBX_alwDFVx4IFXuLUAPksxqCzdwiPyfS0F1FsdoW_2T_oYIBjvzbKdcLYEAygwFZpniUIE5f3eo_pxMtWdpa40NolTx9qlBtm3FDIdDoDvIgTw"
+                }
+            ]
+        ).addTo(myMap);
+
+
+
+
+        var theMarker = {};
+        myMap.on('click', function (e) {
+
+            lat = e.latlng.lat;
+            lon = e.latlng.lng;
+
+            console.log("You clicked the map at LAT: " + lat + " and LONG: " + lon);
+            //Clear existing marker,
+
+            if (theMarker != undefined) {
+                myMap.removeLayer(theMarker);
+            };
+
+            //Add a marker to show where you clicked.
+            theMarker = L.marker([lat, lon], { icon: greenIcon }).addTo(myMap);
+            $("#lat").val(lat);
+            $("#lon").val(lon);
+        });
+        theMarker = L.marker([lat, lon], { icon: greenIcon }).addTo(myMap);
+        $("#lat").val(lat);
+        $("#lon").val(lon);
+
+
+
+
+    }
+    function errorHandler(err) {
+        if (err.code == 1) {
+            // alert("Error: Access is denied!");
+        } else if (err.code == 2) {
+            // alert("Error: Position is unavailable!");
+        }
+
+        var myMap = new L.Map('map', {
+            minZoom: 1,
+            maxZoom: 20,
+            center: [35.764435, 51.391507],
+            zoom: 16
+        });
+        var greenIcon = new L.Icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34],
+            shadowSize: [41, 41]
+        });
+
+        L.TileLayer.wmsHeader(
+            "https://map.ir/shiveh",
+            {
+                layers: "Shiveh:Shiveh",
+                format: "image/png",
+                minZoom: 1,
+                maxZoom: 20
+            },
+            [
+                {
+                    header: "x-api-key",
+                    value: "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjdjZTBhMDNiYmZiOWI3MWYxZTYwYzFiNjg2MTdkMTljZTA2Y2U4MjEzMzRlNjRkZjllNDZiYTUwMmE5NmI2YjgxMDFmYmE1Zjk1MTNjOGUzIn0.eyJhdWQiOiI4NjY0IiwianRpIjoiN2NlMGEwM2JiZmI5YjcxZjFlNjBjMWI2ODYxN2QxOWNlMDZjZTgyMTMzNGU2NGRmOWU0NmJhNTAyYTk2YjZiODEwMWZiYTVmOTUxM2M4ZTMiLCJpYXQiOjE1ODY1OTQ4MDEsIm5iZiI6MTU4NjU5NDgwMSwiZXhwIjoxNTg5MTg2ODAxLCJzdWIiOiIiLCJzY29wZXMiOlsiYmFzaWMiXX0.dCY2mtjog8J2xVXPS2FhqnGgoqrYq5mYAjqK3XxWrDDIQsv8p9lbF9ZHlSidZi3DN7EkhY6Py3E7yBJiZ_iBWhAyrJ6qpjgjEm8Eu-I0m2h1UVkrJqObtWzkaBRyl_WRxWP7hAcbSve-g5OIrWoCSkyeW_R8NqyfPD-4xMrBl3g78klaQlZbxU19rNU2OcFj8IRCMeepwiQNgKEViOuStQOqnJqBc7ofzPzr8okUBX_alwDFVx4IFXuLUAPksxqCzdwiPyfS0F1FsdoW_2T_oYIBjvzbKdcLYEAygwFZpniUIE5f3eo_pxMtWdpa40NolTx9qlBtm3FDIdDoDvIgTw"
+                }
+            ]
+        ).addTo(myMap);
+
+
+
+
+        var theMarker = {};
+        myMap.on('click', function (e) {
+
+            lat = e.latlng.lat;
+            lon = e.latlng.lng;
+
+            console.log("You clicked the map at LAT: " + lat + " and LONG: " + lon);
+            //Clear existing marker,
+
+            if (theMarker != undefined) {
+                myMap.removeLayer(theMarker);
+            };
+
+            //Add a marker to show where you clicked.
+            theMarker = L.marker([lat, lon], { icon: greenIcon }).addTo(myMap);
+            $("#lat").val(lat);
+            $("#lon").val(lon);
+        });
+
+
+    }
+    function getLocation() {
+        if (navigator.geolocation) {
+            // timeout at 60000 milliseconds (60 seconds)
+            var options = { timeout: 60000 };
+            navigator.geolocation.getCurrentPosition
+                (showLocation, errorHandler, options);
+        } else {
+            alert("Sorry, browser does not support geolocation!");
+        }
+    }
+
+
+    $("#closemap").click(function () {
+        var x = document.getElementById("mapHolder");
+        x.style.display = "none";
+        $("body").css("overflow", "scroll");
+        $("#showMap").text("انتخاب مجدد ")
+    })
+    $("#showMap").click(function () {
+        var x = document.getElementById("mapHolder");
+        x.style.display = "block";
+        $("body").css("overflow", "hidden")
+        getLocation()
+
+        //if (x.style.display === "none") {
+        //    x.style.display = "block";
+        //} else {
+        //    x.style.display = "none";
+        //}
+        ////$("#mapHolder").css("width", "100%");
+        ////$("#mapHolder").css("height", "450px");
+        ////$("body").css("overflow", "hidden")
+        ////$(".main_container").css("display", "none");
+    })
+
+
+
+
+</script>
+
+
+
+
+

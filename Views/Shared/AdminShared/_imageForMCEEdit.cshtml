@@ -1,0 +1,78 @@
+﻿@model string
+
+@{
+    if (Model != "")
+    {
+        List<string> list = Model.Split(',').ToList();
+        foreach (var item in list)
+        {
+            string src = "";
+            if (item.Contains("images"))
+            {
+                src =  item;
+
+            }
+            else
+            {
+                src = "/images/panelimages/" + item;
+
+            }
+            string id = item;
+            <div style="padding:5px;border:1px solid #ddd;border-radius:5px;display: inline-block;margin-left:10px">
+                <img style="max-width: 100px;border-radius: 5px;" src=@src>
+                <div class="btn btn-default DELETEREM" id=@id>حذف</div>
+                <p style="margin-top:5px">@src</p>
+            </div>
+
+
+        }
+    }
+
+}
+
+<script>
+    $(".DELETEREM").click(function () {
+        var image = $("#imageupdate").val();
+       
+        var id = $(this).attr('id');
+        alert(id);
+        var parent = $(this).parent('div');
+        $("#loading").css("display", "inline-block");
+        $.ajax({
+            url: '/Admin/DelImageForMCE',
+            data: {
+                filename: id,
+                type: 'edit',
+                image: image
+            },
+            dataType: 'html',
+            success: function (data) {
+                if (data === "Error") {
+                    toastr.options = {
+                        "debug": false,
+                        "positionClass": "toast-top-center",
+                        "onclick": null,
+                        "fadeIn": 300,
+                        "fadeOut": 1000,
+                        "timeOut": 5000,
+                        "extendedTimeOut": 1000
+                    }
+                    toastr.error('عکس اصلی خبر باید جایگزین داشته باشد')
+                }
+                else {
+                    if (data === "main") {
+                        $("#imageupdate").val("");
+                    }
+                    parent.hide();
+                    $("#loading").css("display", "none");
+                }
+               
+            },
+            error: function () {
+
+            }
+        });
+
+
+    })
+</script>

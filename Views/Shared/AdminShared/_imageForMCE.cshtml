@@ -1,0 +1,63 @@
+﻿@model instaPayPortal.ViewModel.imageForEMCVM
+
+@{
+    if (Model.data != "")
+    {
+        List<string> list = Model.data.Split(',').ToList();
+        foreach (var item in list)
+        {
+            string src = "";
+            if (item.Contains("images"))
+            {
+                src =  item;
+
+            }
+            else
+            {
+                src = "/images/panelimages/" + item;
+
+            }
+            string id = item;
+            <div style="padding:5px;border:1px solid #ddd;border-radius:5px;display: inline-block;margin-left:10px">
+                <img style="max-width: 100px;border-radius: 5px;" src=@src>
+                <div class="btn btn-default DELETEREM" id=@id>حذف</div>
+                <p style="margin-top:5px">@src</p>
+            </div>
+
+
+        }
+    }
+
+}
+
+<script>
+    $(".DELETEREM").click(function () {
+        var id = $(this).attr('id');
+        var parent = $(this).parent('div');
+        $("#loading").css("display", "inline-block");
+        $.ajax({
+            url: '/Admin/DelImageForMCE',
+            data: {
+                filename: id,
+                type: 'add'
+            },
+            dataType: 'html',
+            success: function (data) {
+               
+                if ('@Model.type' === "add") {
+                    parent.hide();
+                }
+                else {
+                    parent.hide();
+                }
+               
+                $("#loading").css("display", "none");
+            },
+            error: function () {
+
+            }
+        });
+
+
+    })
+</script>

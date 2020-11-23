@@ -1,0 +1,839 @@
+﻿@model   instaPayPortal.ViewModel.application
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>اینستا پی - دستیار شما در تجارت اینستاگرام</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
+
+    <link rel="stylesheet" href="~/css/bootstrap.min.css">
+ 
+    <link rel="stylesheet" href="~/css/jquery-ui.css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css">
+
+    <link rel="stylesheet" href="~/css/jquery.fancybox.min.css">
+
+    <link rel="stylesheet" href="~/css/bootstrap-datepicker.css">
+
+    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+    <link rel="stylesheet" href="~/css/aos.css">
+
+    <link rel="stylesheet" href="~/css/style.css">
+    <link href="~/fonts/icomoon/style.css" rel="stylesheet" />
+    <style>
+        .shadebox {
+           
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 2px 2px 5px -1px rgba(148,149,153,1);
+        }
+        .pdescript {
+            font-size: 15px;
+            line-height: 28px;
+            margin-bottom: 20px; 
+            text-align: right;
+            overflow: hidden;
+            width: 100%;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            
+        }
+        .feature{
+            padding:30px;
+            background-color:#fcfcfc;
+
+            
+        }
+            .feature:hover {
+                box-shadow: 2px 2px 5px -1px rgba(148,149,153,1);
+            }
+        .feature-border1{
+            border-bottom:1px solid #eee;
+            border-right:1px solid #eee
+        }
+        .feature-border2 {
+            border-bottom: 1px solid #eee;
+        }
+        .iconHolder{
+            margin-top:25px;
+        }
+        .blogItem:hover {
+            transition: all .8s ease;
+            /*border: 1px solid #4285F4;*/
+        }
+
+    </style>
+
+</head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+  
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+   
+  
+    <header class="site-navbar py-4  js-sticky-header site-navbar-target" role="banner">
+
+      <div class="container">
+        <div class="row align-items-center">
+          
+          <div class="col-11 col-xl-2">
+          @*  <h1 class="mb-0 site-logo"><a href="index.html" class="text-black h2 mb-0">InstaCRM<span class="text-primary">.</span> </a></h1>*@
+          </div>
+          <div class="col-12 col-md-10 d-none d-xl-block" style="direction: rtl">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+
+                <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                    <li><a href="#home-section" class="nav-link">خانه</a></li>
+                    <li><a href="#crm-section" class="nav-link">اینستا سی آر ام</a></li>
+                    <li>
+                        <a href="#services-section" class="nav-link">خدمات</a>
+                    </li>
+                    @* <li class="has-children">*@
+                    <li>
+                        <a href="#about-section" class="nav-link">درباره ما</a>
+                        @*<ul class="dropdown">
+              <li><a href="#about-section">تخصص ما</a></li>
+              <li><a href="#team-section">همکاران</a></li>
+            </ul>*@
+                    </li>
+                    <li><a href="#blog-section" class="nav-link">بلاگ</a></li>
+                    <li><a href="#contact-section" class="nav-link">تماس با ما</a></li>
+                    <li><a href="/admin/index" class="nav-link">ورود</a></li>
+                </ul>
+            </nav>
+          </div>
+
+
+          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
+
+        </div>
+      </div>
+      
+    </header>
+
+  
+
+    <div class="site-blocks-cover overlay" style="background-image: url(/images/hero_1.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row align-items-center justify-content-center text-center">
+
+          <div class="col-md-12" data-aos="fade-up" data-aos-delay="400">
+                        
+            <div class="row justify-content-center mb-4">
+              <div class="col-md-10 text-center">
+                <h1>در کنار شما هستیم با  <span class="typed-words"></span></h1>
+                <p class="lead mb-5">@*Free Web Template by <a href="#" target="_blank">Colorlib</a>*@</p>
+                @*<div><a data-fancybox data-ratio="2" href="https://vimeo.com/317571768" class="btn btn-primary btn-md">تماشای ویدئو</a></div>*@
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>  
+
+
+    
+
+    <section class="site-section" id="crm-section">
+      <div class="container">
+         
+        <div class="row" style="text-align:right; direction:rtl">
+          <div class="col-md-6 col-lg-4"  style="padding:10px">
+            <div class="p-3 box-with-humber shadebox">
+              
+              <h5 class="text-primary"> خدمات نوین </h5>
+              <p class="mb-4 pdescript">ارائه خدمات نوین به تجارت های کوچک و بزرگ در اینستاگرام از اهداف  اصلی مجموعه اینستا پی میباشد که سالهاست با خلق بسترهای مناسب در این راستا تلاش میکند  </p>
+              @*<ul class="list-unstyled ul-check primary">
+                <li>Customer Experience</li>
+                <li>Product Management</li>
+                <li>Proof of Concept</li>
+              </ul>*@
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4"  style="padding:10px">
+            <div class="p-3 box-with-humber shadebox">
+              
+              <h5 class="text-primary">خلاقیت در تعامل</h5>
+              <p class="mb-4 pdescript">استفاده از روش های نوین و خلاقانه در حفظ ارتباط با مشتریان از اهمیت فراوانی برخوردار است و ایستا پی با ارائه راه حل های نوین میتواند اثر قابل توجهی در مدیریت مخاطب داشته باشد  </p>
+             
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" style="padding:10px">
+            <div class="p-3 box-with-humber shadebox">
+             
+              <h5 class="text-primary">طعم خوش تکنولوژی</h5>
+              <p class="mb-4 pdescript">استفاده از اتوماسیون در روند سنتی انجام تعاملات در اینستا نه تنها  میتواند  خسارت های مالی ناشی از اشتباهات فردی را به شدت کاهش دهد، بلکه منجر به افزایش بهروری قابل توجهی خواهد شد  </p>
+             
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    @*<section class="site-section" id="work-section">
+      <div class="container">
+        <div class="row mb-5 justify-content-center">
+          <div class="col-md-8 text-center">
+            <h2 class="text-black h1 site-section-heading text-center">Our Works</h2>
+            <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores, itaque neque, delectus odio iure explicabo.</p>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-6 col-lg-4">
+            <a href="~/images/img_1.jpg" class="media-1" data-fancybox="gallery">
+              <img src="~/images/img_1.jpg" alt="Image" class="img-fluid">
+              <div class="media-1-content">
+                <h2>Bonzai Tree</h2>
+                <span class="category">Web Application</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a href="~/images/img_2.jpg" class="media-1" data-fancybox="gallery">
+              <img src="~/images/img_2.jpg" alt="Image" class="img-fluid">
+              <div class="media-1-content">
+                <h2>Simple Woman</h2>
+                <span class="category">Branding</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a href="~/images/img_3.jpg" class="media-1" data-fancybox="gallery">
+              <img src="~/images/img_3.jpg" alt="Image" class="img-fluid">
+              <div class="media-1-content">
+                <h2>Fruits</h2>
+                <span class="category">Website</span>
+              </div>
+            </a>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <a href="~/images/img_4.jpg" class="media-1" data-fancybox="gallery">
+              <img src="~/images/img_4.jpg" alt="Image" class="img-fluid">
+              <div class="media-1-content">
+                <h2>Design Material</h2>
+                <span class="category">Web Application</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a href="~/images/img_5.jpg" class="media-1" data-fancybox="gallery">
+              <img src="~/images/img_5.jpg" alt="Image" class="img-fluid">
+              <div class="media-1-content">
+                <h2>Handy Food</h2>
+                <span class="category">Branding</span>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <a href="~/images/img_6.jpg" class="media-1" data-fancybox="gallery">
+              <img src="~/images/img_6.jpg" alt="Image" class="img-fluid">
+              <div class="media-1-content">
+                <h2>Cat With Cup</h2>
+                <span class="category">Website</span>
+              </div>
+            </a>
+          </div>
+
+         
+        </div>
+      </div>
+    </section>*@
+
+    <section class="section ft-feature-1">
+      <div class="container">
+          <div class="row" style="margin:25px; text-align:center"><p style="margin:auto; font-size:32px; color:#4d4d4d">اینستا سی آر پی در یک نگاه</p></div>
+        <div class="row align-items-stretch">
+          <div class="col-12 bg-black w-100 ft-feature-1-content">
+            <div class="row align-items-center" style="text-align:right">
+              <div class="col-lg-5">
+                
+                  <img src="~/images/about_1.jpg" alt="Image" class="img-fluid mb-4 mb-lg-0">
+                
+              </div>
+              <div class="col-lg-3 ml-auto">
+                  <div class="mb-5">
+                      <h3 class="d-flex align-items-center"><span class="icon icon-build mr-2"></span><span>اتوماسیون روند کسب و کار</span></h3>
+                      <p>اتوماسیون روند کسب و کار در اینستاگرام با هدف کاهش وابستگی به افراد و کاهش خطای فردی </p>
+
+                  </div>
+
+                  <div>
+                      <h3 class="d-flex align-items-center"><span class="icon icon-question_answer mr-2"></span><span>تعامل بدون محدودیت</span></h3>
+                      <p> کسب زیر ساخت های مستقل ارتباطی و تجاری به منظور رهایی از وابستگی به عوامل خارجی  </p>
+
+                  </div>
+
+              </div>
+              <div class="col-lg-3">
+                  <div class="mb-5">
+                      <h3 class="d-flex align-items-center"><span class="icon icon-beach_access mr-2"></span><span>حراست از داراییها </span></h3>
+                      <p>حراست از دارایی ها شما در اینستاگرام اولین مرحله از روند  سیستم به شمار می رود</p>
+
+
+                     
+                  </div>
+
+                <div>
+                    <h3 class="d-flex align-items-center"><span class="icon icon-format_paint mr-2"></span><span>ایجاد زیر ساخت </span></h3>
+                    <p>ایجاد زیرساخت در حوزه ارتباط با مشتری به منظور افزایش بهروه وری   کسب و کار </p>
+
+                   
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    @*<section class="site-section testimonial-wrap">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8 text-center">
+            <h2 class="text-black h1 site-section-heading text-center">Testimonials</h2>
+          </div>
+        </div>
+      </div>
+      <div class="slide-one-item home-slider owl-carousel">
+          <div>
+            <div class="testimonial">
+              
+              <blockquote class="mb-5">
+                <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+              </blockquote>
+
+              <figure class="mb-4 d-flex align-items-center justify-content-center">
+                <div><img src="~/images/person_3.jpg" alt="Image" class="w-50 img-fluid mb-3"></div>
+                <p>John Smith</p>
+              </figure>
+            </div>
+          </div>
+          <div>
+            <div class="testimonial">
+
+              <blockquote class="mb-5">
+                <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+              </blockquote>
+              <figure class="mb-4 d-flex align-items-center justify-content-center">
+                <div><img src="~/images/person_2.jpg" alt="Image" class="w-50 img-fluid mb-3"></div>
+                <p>Christine Aguilar</p>
+              </figure>
+              
+            </div>
+          </div>
+
+          <div>
+            <div class="testimonial">
+
+              <blockquote class="mb-5">
+                <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+              </blockquote>
+              <figure class="mb-4 d-flex align-items-center justify-content-center">
+                <div><img src="~/images/person_4.jpg" alt="Image" class="w-50 img-fluid mb-3"></div>
+                <p>Robert Spears</p>
+              </figure>
+
+              
+            </div>
+          </div>
+
+          <div>
+            <div class="testimonial">
+
+              <blockquote class="mb-5">
+                <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+              </blockquote>
+              <figure class="mb-4 d-flex align-items-center justify-content-center">
+                <div><img src="~/images/person_5.jpg" alt="Image" class="w-50 img-fluid mb-3"></div>
+                <p>Bruce Rogers</p>
+              </figure>
+
+            </div>
+          </div>
+
+        </div>
+    </section>*@
+
+    <section class="site-section border-bottom" id="services-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-8 text-center" data-aos="fade-up">
+            <h2 class=" h1 site-section-heading text-center">خدمات ما</h2>
+          </div>
+        </div>
+        <div class="row align-items-stretch" style="text-align:right">
+            <div class="feature feature-border1 col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up">
+                <div class="unit-4 d-flex">
+                    <div class="unit-4-icon mr-4"><span class="text-primary icon-user"></span></div>
+                    <div>
+                        <h3>ذخیره سازی فالوورها</h3>
+                        <p>ذخیره سازی اطلاعات مرتبط با فالوورها میتواند نقش قابل توجهی در تجارت شما داشته باشد</p>
+                        @*<p><a href="#">بیشتر</a></p>*@
+                    </div>
+                </div>
+            </div>
+            <div class="feature feature-border2 col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="unit-4 d-flex">
+                    <div class="iconHolder unit-4-icon mr-4"><span class="text-primary icon-send"></span></div>
+                    <div>
+                        <h3>ذخیره سازی پست ها </h3>
+                        <p>پست های اکانت شما از مهمترین دارایی های شما در اینستا می باشند حفظ این دارای بقای شما در محیط اینستا را تضمین میکند</p>
+                        @*<p><a href="#">بیشتر</a></p>*@
+                    </div>
+                </div>
+            </div>
+            <div class="feature feature-border1  col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="unit-4 d-flex">
+                    <div class="iconHolder unit-4-icon mr-4"><span class="text-primary icon-save"></span></div>
+                    <div>
+                        <h3>دسترسی به تمامی محتوای تولید شده </h3>
+                        <p>تمام محتوای تولید شامل کامنت ها ، لایو و غیره در صورت لزوم قابل بازیابی و پردازش مجدد خواهد بود</p>
+                        @*<p><a href="#">بیشتر</a></p>*@
+                    </div>
+                </div>
+            </div>
+            <div class="feature feature-border2 col-md-6 col-lg-6 mb- mb-lg-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="unit-4 d-flex">
+                    <div class="iconHolder unit-4-icon mr-4"><span class="text-primary icon-live_tv"></span></div>
+                    <div>
+                        <h3>دسترسی به لایو اینستاگرام خارچ از محیط اینتساگرام </h3>
+                        <p>استخراج لینک لایو اینستاگرام جهت ارسال و یا اشتراک گذاری خارج از محیط اینستاگرام</p>
+                        @*<p><a href="#">بیشتر</a></p>*@
+                    </div>
+                </div>
+            </div>
+            <div class="feature feature-border1  col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="200">
+                <div class="unit-4 d-flex">
+                    <div class="iconHolder unit-4-icon mr-4"><span class="text-primary icon-comment"></span></div>
+                    <div>
+                        <h3>روش های نوین ارتباط</h3>
+                        <p> ارتباط هوشمندانه با مشتریان از نکات کلیدی در راندمان سیستم تجاری است. خدمات ارتباط هوشمند ما به این منظور طراحی شده است  </p>
+                        @*<p><a href="#">بیشتر</a></p>*@
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="feature feature-border2 col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="unit-4 d-flex">
+                    <div class="iconHolder unit-4-icon mr-4"><span class="text-primary icon-shopping-basket"></span></div>
+                    <div>
+                        <h3>اتوماسیون فرایند فروش</h3>
+                        <p>شاید یکی از چالش انگیز ترین بخش های تجارت در اینستاگرام تکمیل فرایند فروش باشد. اتوماسیون این بخش میتواند اثر قابل توجهی در تجارت شما داشته باشد</p>
+                        @*<p><a href="#">بیشتر</a></p>*@
+                    </div>
+                </div>
+            </div>
+            <div class="feature feature-border1  col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="unit-4 d-flex">
+                    <div class="iconHolder unit-4-icon mr-4"><span class="text-primary icon-money"></span></div>
+                    <div>
+                        <h3>مدیریت تخفیف</h3>
+                        <p>ایجاد و استفاده از کوپن های تخفیفی جهت خرید مشتریان</p>
+                        @*<p><a href="#">بیشتر</a></p>*@
+                    </div>
+                </div>
+            </div>
+            <div class="feature feature-border2 col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="400">
+                <div class="unit-4 d-flex">
+                    <div class="iconHolder unit-4-icon mr-4"><span class="text-primary icon-file-archive-o"></span></div>
+                    <div>
+                        <h3>حسابداری آسان</h3>
+                        <p>حسابداری آسان یکی دیگر از خدمات اینستاپی بوده که بار قابل توجهی از دوش مالک کسب و کار بر خواهد داشت</p>
+                        @*<p><a href="#">بیشتر</a></p>*@
+                    </div>
+                </div>
+            </div>
+            <div class=" feature feature-border1  col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="500">
+                <div class="unit-4 d-flex">
+                    <div class="iconHolder unit-4-icon mr-4"><span class="text-primary icon-handshake-o"></span></div>
+                    <div>
+                        <h3>مدیریت هوشمند مشتریان</h3>
+                        <p>دریافت و ذخیره سازی اطلاعات مشتری جهت تحویل مرسوله به صورت هوشمند</p>
+                        @*<p><a href="#">بیشتر </a></p>*@
+                    </div>
+                </div>
+            </div>
+            <div class="feature feature-border2 col-md-6 col-lg-6 mb-6 mb-lg-6" data-aos="fade-up" data-aos-delay="300">
+                <div class="unit-4 d-flex">
+                    <div class="iconHolder unit-4-icon mr-4"><span class="text-primary icon-database"></span></div>
+                    <div>
+                        <h3>ایجاد زیر ساخت اطلاعاتی کاربران</h3>
+                        <p>ایجاد بستر مناسب جهت مشارکت کاربران در تشکیل پایگاه داده اطلاعاتی جهت دسترسی های بعدی</p>
+                        @*<p><a href="#">بیشتر</a></p>*@
+                    </div>
+                </div>
+            </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="site-section" id="about-section">
+      <div class="shadebox container" style="direction:rtl; padding:35px">
+        <div class="row mb-5" style="text-align:right">
+          
+          <div class="col-md-5 ml-auto mb-5 order-md-2" data-aos="fade" >
+            <img src="~/images/about_1.jpg" alt="Image" class="img-fluid rounded">
+          </div>
+          <div class="col-md-6 order-md-1" data-aos="fade">
+
+            <div class="row">
+
+              <div class="col-12">
+                <div class="text-left pb-1">
+                  <h2 class="text-black h1 site-section-heading"  style="text-align:right">درباره ما</h2>
+                </div>
+              </div>
+              <div class="col-12 mb-4">
+                <p class="lead" style="line-height:1.8; text-align:justify">  ما در اینستا سی آر پی با بیش از 5 سال تخصص در حوزه مارکتینگ اینستاگرام با طراحی راه کارهای نوین ارتباطی درجهت تعامل هر چه بیشتر با مخاطبان و همچنان تصحیح روند سنتی خدمات تجاری در بستر اینستاگرام تلاش کردیم تا قدمی هر چند کوچک در جهت کمک به رشد کسب و کارهای موجود در اینستاگرام برداریم و توانستیم با پشتیبانی شما جدید ترین راهکارهای ارتباطی در اینستاگرام را خلق و ارائه نماییم         </p>
+              </div>
+              @*<div class="col-md-12 mb-md-5 mb-0 col-lg-6">
+                <div class="unit-4">
+                  <div class="unit-4-icon mr-4 mb-3"><span class="text-secondary icon-phonelink"></span></div>
+                  <div>
+                    <h3>Web &amp; Mobile Specialties</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis consect.</p>
+                    <p class="mb-0"><a href="#">Learn More</a></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 mb-md-5 mb-0 col-lg-6">
+                <div class="unit-4">
+                  <div class="unit-4-icon mr-4 mb-3"><span class="text-secondary icon-extension"></span></div>
+                  <div>
+                    <h3>Intuitive Thinkers</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis.</p>
+                    <p class="mb-0"><a href="#">Learn More</a></p>
+                  </div>
+                </div>
+              </div>*@
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  
+    
+    @*<div class="site-section border-bottom" id="team-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 text-center">
+            <h2 class="text-black h1 site-section-heading">تیم ما</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
+            <div class="person text-center">
+              <img src="~/images/person_2.jpg" alt="Image" class="img-fluid rounded-circle w-50 mb-5">
+              <h3>John Rooster</h3>
+              <p class="position text-muted">Co-Founder, President</p>
+              <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi at consequatur unde molestiae quidem provident voluptatum deleniti quo iste error eos est praesentium distinctio cupiditate tempore suscipit inventore deserunt tenetur.</p>
+              <ul class="ul-social-circle">
+                <li><a href="#"><span class="icon-facebook"></span></a></li>
+                <li><a href="#"><span class="icon-twitter"></span></a></li>
+                <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                <li><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
+            <div class="person text-center">
+              <img src="~/images/person_3.jpg" alt="Image" class="img-fluid rounded-circle w-50 mb-5">
+              <h3>Tom Sharp</h3>
+              <p class="position text-muted">Co-Founder, COO</p>
+              <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi at consequatur unde molestiae quidem provident voluptatum deleniti quo iste error eos est praesentium distinctio cupiditate tempore suscipit inventore deserunt tenetur.</p>
+              <ul class="ul-social-circle">
+                <li><a href="#"><span class="icon-facebook"></span></a></li>
+                <li><a href="#"><span class="icon-twitter"></span></a></li>
+                <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                <li><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="300">
+            <div class="person text-center">
+              <img src="~/images/person_4.jpg" alt="Image" class="img-fluid rounded-circle w-50 mb-5">
+              <h3>Winston Hodson</h3>
+              <p class="position text-muted">Marketing</p>
+              <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi at consequatur unde molestiae quidem provident voluptatum deleniti quo iste error eos est praesentium distinctio cupiditate tempore suscipit inventore deserunt tenetur.</p>
+              <ul class="ul-social-circle">
+                <li><a href="#"><span class="icon-facebook"></span></a></li>
+                <li><a href="#"><span class="icon-twitter"></span></a></li>
+                <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                <li><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>*@
+
+    <section class="site-section" id="blog-section">
+        <div class="container">
+            <h6 class="" style="float:left"><a href="/Home/blogList">مشاهده همه</a> </h6>
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-8 text-center">
+                    <h2 class="text-black h1 site-section-heading text-center">خبرنامه</h2>
+
+                </div>
+            </div>
+
+            <div class="row">
+                @{
+                    foreach (var item in Model.articles)
+                    {
+                        <div class="blogItem col-md-6 col-lg-4 mb-4 mb-lg-4">
+                            <div class="h-entry" style="text-align:right">
+                                <a href="single.html"><img src="~/images/panelimages/@item.image" alt="Image" class="img-fluid"></a>
+                                <div style="border-right:1px solid #ddd; border-left:1px solid #ddd; padding:15px">
+
+                                    <h5 class="font-size-regular"><a href="single.html" style="">@item.title</a></h5>
+
+                                    <p class="pdescript" style="">@Html.Raw(@item.content)</p>
+                                    <p><a href="/Home/magDetail?currentid=@item.ID">بیشتر</a></p>
+                                </div>
+
+                                <div style="padding:15px ;color:#4d4d4d; border:1px solid #ddd" class="meta mb-4">@item.writer <span class="mx-2">&bullet;</span>  @item.date  </div>
+                            </div>
+                        </div>
+
+                    }
+                }
+
+
+            </div>
+        </div>
+    </section>
+
+   
+
+
+    <section class="site-section bg-light" id="contact-section">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-12 text-center">
+            <h2 class="text-black h1 site-section-heading">تماس با ما</h2>
+          </div>
+        </div>
+        <div class="row" style="direction:rtl;text-align:right">
+          <div class="col-md-7 mb-5">
+
+            
+
+            <form action="#" class="p-5 bg-white">
+              
+              <h2 class="h4 text-black mb-5">فرم تماس</h2> 
+
+              <div class="row form-group">
+                <div class="col-md-6 mb-3 mb-md-0">
+                  <label class="text-black" for="fname">نام و نام خانوادگی</label>
+                  <input type="text" id="fname" class="form-control">
+                </div>
+                <div class="col-md-6">
+                  <label class="text-black" for="lname">موبایل </label>
+                  <input type="text" id="lname" class="form-control">
+                </div>
+              </div>
+
+              
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <label class="text-black" for="message">متن پیام</label> 
+                  <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder=""></textarea>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  <input type="submit" value="تایید" class="btn btn-primary btn-md text-white">
+                </div>
+              </div>
+
+  
+            </form>
+          </div>
+          <div class="col-md-5">
+            
+            <div class="p-4 mb-3 bg-white">
+              <p class="mb-0 font-weight-bold">آدرس</p>
+              <p class="mb-4">لویزان ساختمان پزشکان فارابی بلوک دی طبقه 6 واحد 106</p>
+
+              <p class="mb-0 font-weight-bold">تلفن</p>
+              <p class="mb-4"><a href="#">22958915 - 09194594505 - 09351921912</a></p>
+
+              <p class="mb-0 font-weight-bold">Email Address</p>
+              <p class="mb-0"><a href="#">info@instacrm.com</a></p>
+
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    @*<a href="#" class="bg-primary py-5 d-block">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md10"><h2 class="text-white">Let's Get Started</h2></div>
+        </div>
+      </div>  
+    </a>*@
+    
+    <footer class="site-footer" style="text-align:right">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-5">
+                <h2 class="footer-heading mb-4">سخن آخر</h2>
+                <p>اینستا سی آر ام در تلاش است با استفاده از زیر ساخت فنی خود نقشی هر چند کوچک در ارتقا کسب و کارها داشته باشد. 
+                </p>
+              </div>
+              <div class="col-md-3 ml-auto">
+                <h2 class="footer-heading mb-4">بخش ها</h2>
+                <ul class="list-unstyled">
+                  <li><a href="#about-section">درباره ما</a></li>
+                  <li><a href="#services-section">خدمات</a></li>
+                  <li><a href="#blog-section">بلاگ</a></li>
+                  <li><a href="#contact-section">تماس با ما</a></li>
+                </ul>
+              </div>
+              <div class="col-md-3">
+                <h2 class="footer-heading mb-4">ما را دنبال کنید</h2>
+                <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+                <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+                <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+                <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+              <h2 class="footer-heading mb-4">آخرین اخبار</h2>
+              <div class="input-group mb-3">
+                  <input id="emailHolder" type="text" class="form-control border-secondary text-white bg-transparent" placeholder="ایمیل خود را وارد کنید" aria-label="Enter Email" aria-describedby="button-addon2">
+                  <div class="input-group-append">
+                      <div id="newsEmail" class="btn btn-primary text-white" type="button" id="button-addon2">ارسال</div>
+                  </div>
+              </div>
+              <script>
+                  function isValidEmailAddress(emailAddress) {
+                      var pattern = /^([a-zA-Z0-9_.+-])+\@@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                      return pattern.test(emailAddress);
+                  };
+                  $("#newsEmail").click(function () {
+                      Email = $("#emailHolder").val();
+                      if (isValidEmailAddress(Email)) {
+                          $.ajax({
+                              url: '/Home/setEmailForNews',
+                              data: {
+                                  email: Email
+                              },
+                              success: function (data) {
+                                  toastr.options = {
+                                      "debug": false,
+                                      "positionClass": "toast-top-center",
+                                      "onclick": null,
+                                      "fadeIn": 300,
+                                      "fadeOut": 1000,
+                                      "timeOut": 5000,
+                                      "extendedTimeOut": 1000,
+
+
+                                  }
+                                  toastr.success('ایمیل شما با موفقیت ثبت شد')
+
+                              },
+                              error: function () {
+
+                              }
+                          });
+
+                      } else {
+                          toastr.options = {
+                              "debug": false,
+                              "positionClass": "toast-top-center",
+                              "onclick": null,
+                              "fadeIn": 300,
+                              "fadeOut": 1000,
+                              "timeOut": 5000,
+                              "extendedTimeOut": 1000,
+
+
+                          }
+                          toastr.error('ایمیل صحیح وارد کنید')
+                      }
+
+                  })
+
+              </script>
+          </div>
+        </div>
+       
+      </div>
+    </footer>
+
+  </div> <!-- .site-wrap -->
+
+  <script src="~/js/jquery-3.3.1.min.js"></script>
+  <script src="~/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="~/js/jquery-ui.js"></script>
+  <script src="~/js/popper.min.js"></script>
+  <script src="~/js/bootstrap.min.js"></script>
+  <script src="~/js/owl.carousel.min.js"></script>
+  <script src="~/js/jquery.stellar.min.js"></script>
+  <script src="~/js/jquery.countdown.min.js"></script>
+  <script src="~/js/bootstrap-datepicker.min.js"></script>
+  <script src="~/js/jquery.easing.1.3.js"></script>
+  <script src="~/js/aos.js"></script>
+  <script src="~/js/jquery.fancybox.min.js"></script>
+  <script src="~/js/jquery.sticky.js"></script>
+
+  <script src="~/js/typed.js"></script>
+            <script>
+            var typed = new Typed('.typed-words', {
+            strings: ["روش های نوین بازاریابی"," حفظ دارایی های شما"," مدیریت کارامد پرداخت"],
+            typeSpeed: 80,
+            backSpeed: 80,
+            backDelay: 4000,
+            startDelay: 1000,
+            loop: true,
+            showCursor: false
+            });
+            </script>
+
+  <script src="~/js/main.js"></script>
+  
+
+
+  </body>
+</html>

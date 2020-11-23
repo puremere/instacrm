@@ -1,0 +1,300 @@
+﻿@using BotDetect.Web.Mvc
+@using instaPayPortal.Classes;
+@model instaPayPortal.ViewModel.AdminDiscountVM
+@{
+    ViewBag.Title = "blog";
+    Layout = "~/Views/Shared/_ManagerLayout.cshtml";
+}
+
+@section HeadIncludes {
+  
+    <style>
+        .nav-tabs {
+            padding-right: 0px;
+        }
+
+            .nav-tabs li {
+                float: right !important;
+            }
+
+        .fieldholder {
+            /*width: 30%;
+            display: inline-block;*/
+            margin: 10px;
+        }
+
+        .REM {
+            border-radius: 5px;
+        }
+    </style>
+}
+
+<div class="row" style="background-color:white; padding:10px; margin:0px; margin-top:65px">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home" style=" color: #8d8d8d; ">لیست تخفیف ها</a></li>
+        <li><a data-toggle="tab" href="#menu1" style=" color: #8d8d8d; ">تولید تخفیف جدید</a></li>
+
+    </ul>
+
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active" style="padding-top:20px">
+
+
+            <div class="row">
+
+                <div id="Listholder">
+                    <div class="row" style="padding:20px">
+                        <div style="overflow-x:auto;padding:10px">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" style="    background-image: -webkit-linear-gradient(top,#2a85ae 0,#246388 100%) !important;
+    background-image: -o-linear-gradient(top,#2a85ae 0,#246388 100%) !important;
+    background-image: -webkit-gradient(linear,left top,left bottom,from(#2a85ae),to(#246388)) !important;
+    background-image: linear-gradient(to bottom,#2a85ae 0,#246388 100%) !important;color: #fff">
+                                    <h3 class="panel-title"><i class="fa fa-shopping-basket fa-fw"></i> لیست تخفیف ها </h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="morris-area-chart">
+                                        <div style="overflow:auto">
+                                            <table class="table table-bordered table-hover table-striped" style="text-align:center">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="text-align:center">
+                                                            ردیف
+                                                        </th>
+                                                        <th style="text-align:center">
+                                                            عنوان
+                                                        </th>
+                                                        <th style="text-align:center">
+                                                            مبلغ
+                                                        </th>
+
+                                                        <th style="text-align:center">
+                                                            حذف
+                                                        </th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @{
+                                                        if (Model.data != null)
+                                                        {
+                                                            foreach (var item in Model.data)
+                                                            {
+
+                                                                int index = @Model.data.IndexOf(item) + 1;
+                                                                <tr>
+                                                                    <td>
+                                                                        @index
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => item.title)
+                                                                    </td>
+                                                                    <td>
+                                                                        @Html.DisplayFor(modelItem => item.price)
+                                                                    </td>
+                                                                    <td>
+
+                                                                        @{
+                                                                            var ID = @item.ID;
+                                                                            <a id=@ID class="btn btn-primary Dbutton" style="  margin:5px ; cursor: pointer;  padding: 5px; color: #fff; border-radius: 5px;">حذف</a>
+
+                                                                        }
+
+                                                                    </td>
+
+                                                                </tr>
+                                                            }
+
+                                                        }
+                                                    }
+
+
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+            <div class="modal fade" id="deldiscountModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+
+                        <div class="modal-body">
+                            <p>آیا از حذف نظر اطمینان دارید؟</p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="delDiscount">تایید</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">انصراف</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                var id = "";
+                $(".Dbutton").click(function () {
+
+                    $("#deldiscountModal").modal('toggle');
+                    id = $(this).attr("id");
+
+
+                })
+                $("#delDiscount").click(function () {
+                    $.ajax({
+                        url: '/Admin/deleteDiscount',
+                        dataType: 'html',
+                        data: {
+                            id: id,
+                        },
+                        success: function (data) {
+                            if (data === "success") {
+
+                                toastr.options = {
+                                    "debug": false,
+                                    "positionClass": "toast-top-center",
+                                    "onclick": null,
+                                    "fadeIn": 300,
+                                    "fadeOut": 1000,
+                                    "timeOut": 5000,
+                                    "extendedTimeOut": 1000
+                                }
+                                toastr.success('آیتم مورد نظر با موفقیت حذف شد');
+                                window.location.reload();
+                            }
+                            else {
+                                $("#deldiscountModal").modal('toggle');
+                                toastr.options = {
+                                    "debug": false,
+                                    "positionClass": "toast-top-center",
+                                    "onclick": null,
+                                    "fadeIn": 300,
+                                    "fadeOut": 1000,
+                                    "timeOut": 5000,
+                                    "extendedTimeOut": 1000
+                                }
+                                toastr.error('شما قادر به حذف این مورد نیستید')
+                            }
+                        },
+                        error: function () {
+
+                        }
+                    });
+                });
+            </script>
+
+
+        </div>
+        <div id="menu1" class="tab-pane fade" style="padding-top:20px">
+            @using (Html.BeginForm("setNewDiscount", "manager", FormMethod.Post,
+new { enctype = "multipart/form-data", id = "addArticle" }))
+            {
+
+                @Html.AntiForgeryToken()
+                <div class="row">
+
+
+
+                    <div class="row fieldholder col-lg-12">
+                        <div class="col-lg-4">
+                            <label style="text-align: right">
+                                عنوان :
+                            </label>
+                            <div>
+                               
+                                <input value="" type="text" id="title" name="title" required="required" class="form-control ">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <label style="text-align: right">
+                                قیمت :
+                            </label>
+                            <div>
+                                <span style="color:red; display:none">*</span>
+
+                                <input value="" type="text" id="price" name="price" required="required" class="form-control  REM">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label style="text-align: right">
+                                شماره :
+                            </label>
+                            <div>
+                                <input value="" type="text" id="phone" name="phone" required="required" class="form-control ">
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3" style="margin-top:25px">
+                            <a id="CRprocuct" class="lgnsubmitt btn btn-primary">تایید</a>
+
+                        </div>
+
+
+                    </div>
+                  
+
+                </div>
+
+
+
+
+
+
+
+            }
+        </div>
+
+    </div>
+</div>
+<script>
+
+    
+    $("#CRprocuct").click(function () {
+
+        var int = 0;
+        $(".REM").each(function () {
+
+            if ($(this).val() === "") {
+                $(this).siblings("span").css("display", "inline-block");
+                int = 1;
+            }
+
+
+
+
+        })
+        if (int === 0) {
+            $("#addArticle").submit();
+        }
+        else {
+            toastr.options = {
+                "debug": false,
+                "positionClass": "toast-top-center",
+                "onclick": null,
+                "fadeIn": 300,
+                "fadeOut": 1000,
+                "timeOut": 5000,
+                "extendedTimeOut": 1000
+            }
+            toastr.error('لطفاً تمامی موارد را کامل کنی')
+
+        }
+
+
+    })
+</script>
+
+
+
+
+

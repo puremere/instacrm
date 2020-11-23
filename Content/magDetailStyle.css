@@ -1,0 +1,37 @@
+﻿detailParent {
+    padding: 20px;
+    background-color: white;
+    direction: rtl;
+    text-align: right;
+    margin: 20px;
+    
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px -1px rgba(148,149,153,1);
+    line-height: 2;
+    margin:20px;
+    line-height:2 !important;
+}
+ td{
+    padding:4px;
+    border : 1px solid #ddd;
+    direction : rtl
+}
+ p{
+     direction:rtl;
+     margin-right:15px
+
+ }
+.detailParent {
+    margin: 20px;
+    line-height: 2;
+    margin: 20px;
+    direction: rtl;
+    text-align: right;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px -1px rgba(148,149,153,1);
+    background-color:white;
+    padding:25px
+}
+.detailParent table{
+    margin:10px 0;
+}
